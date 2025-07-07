@@ -674,7 +674,7 @@ const menuItems = [
           </Card>
 );
 
-      case 'timeoff':
+case 'timeoff': {
         // Calculate YTD totals for 2024
         const currentYear = 2024;
         const ytdTimeOff = timeOffData
@@ -824,7 +824,7 @@ const menuItems = [
             </Card>
           </div>
         );
-
+      }
       case 'equipment':
         return (
           <Card>
