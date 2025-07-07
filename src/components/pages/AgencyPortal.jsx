@@ -13,18 +13,37 @@ import Error from '@/components/ui/Error';
 import Empty from '@/components/ui/Empty';
 import ApperIcon from '@/components/ApperIcon';
 import { cvSubmissionService } from '@/services/api/cvSubmissionService';
-
+import { ticketService } from '@/services/api/ticketService';
 const AgencyPortal = () => {
+  const [tickets, setTickets] = useState([]);
   const [cvSubmissions, setCvSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [ticketsLoading, setTicketsLoading] = useState(true);
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [showSubmissionForm, setShowSubmissionForm] = useState(false);
   const [formData, setFormData] = useState({
     currentCompany: '',
     rate: '',
     availability: '',
     files: []
   });
+const loadTickets = async () => {
+    try {
+      setTicketsLoading(true);
+      setError('');
+      const data = await ticketService.getAll();
+      // Only show posted tickets that are available for CV submission
+      const availableTickets = data.filter(ticket => ticket.status === 'posted');
+      setTickets(availableTickets);
+    } catch (err) {
+      setError('Failed to load available tickets. Please try again.');
+      console.error('Error loading tickets:', err);
+    } finally {
+      setTicketsLoading(false);
+    }
+  };
 
   const loadSubmissions = async () => {
     try {
@@ -41,7 +60,7 @@ const AgencyPortal = () => {
   };
 
   useEffect(() => {
-    loadSubmissions();
+    Promise.all([loadTickets(), loadSubmissions()]);
   }, []);
 
   const handleInputChange = (field, value) => {
@@ -62,8 +81,18 @@ const AgencyPortal = () => {
     return { success: true };
   };
 
+const handleTicketSelect = (ticket) => {
+    setSelectedTicket(ticket);
+    setShowSubmissionForm(true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!selectedTicket) {
+      toast.error('Please select a ticket first');
+      return;
+    }
     
     if (!formData.currentCompany || !formData.rate || !formData.availability || formData.files.length === 0) {
       toast.error('Please fill in all fields and upload at least one CV');
@@ -73,10 +102,12 @@ const AgencyPortal = () => {
     try {
       setSubmitting(true);
       
-      // Create submissions for each CV file
+      // Create submissions for each CV file with ticket association
       const submissions = await Promise.all(
         formData.files.map(file => 
           cvSubmissionService.create({
+            ticketId: selectedTicket.Id,
+            ticketTitle: selectedTicket.title,
             fileName: file.name,
             fileSize: file.size,
             currentCompany: formData.currentCompany,
@@ -89,15 +120,17 @@ const AgencyPortal = () => {
         )
       );
 
-      toast.success(`Successfully submitted ${submissions.length} CV(s)`);
+      toast.success(`Successfully submitted ${submissions.length} CV(s) for ${selectedTicket.title}`);
       
-      // Reset form
+      // Reset form and close modal
       setFormData({
         currentCompany: '',
         rate: '',
         availability: '',
         files: []
       });
+      setShowSubmissionForm(false);
+      setSelectedTicket(null);
       
       // Reload submissions
       await loadSubmissions();
@@ -143,16 +176,16 @@ const AgencyPortal = () => {
     }
   };
 
-  if (loading) {
+if (ticketsLoading || loading) {
     return <Loading variant="cards" />;
   }
 
   if (error) {
     return (
       <Error
-        title="Failed to load CV submissions"
+        title="Failed to load data"
         message={error}
-        onRetry={loadSubmissions}
+        onRetry={() => Promise.all([loadTickets(), loadSubmissions()])}
       />
     );
   }
@@ -162,157 +195,299 @@ const AgencyPortal = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
-    >
+>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">CV Submission Portal</h1>
-        <p className="text-gray-600 mt-2">Upload CVs using ADB template format and track submission status.</p>
+        <h1 className="text-3xl font-bold text-gray-900">Agency CV Submission Portal</h1>
+        <p className="text-gray-600 mt-2">Select tickets and submit CVs for specific positions. Only posted tickets are available for CV submission.</p>
       </div>
 
-      {/* CV Submission Form */}
+{/* Available Tickets */}
       <Card>
         <CardHeader>
-          <h2 className="text-xl font-semibold text-gray-900">Submit CVs</h2>
-          <p className="text-sm text-gray-600">Upload multiple CVs with candidate information</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900">Available Tickets</h2>
+              <p className="text-sm text-gray-600">Select a ticket to submit CVs for specific positions</p>
+            </div>
+            <Badge variant="info">{tickets.length} Available</Badge>
+          </div>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <Label htmlFor="currentCompany">Current Company</Label>
-                <Input
-                  id="currentCompany"
-                  type="text"
-                  value={formData.currentCompany}
-                  onChange={(e) => handleInputChange('currentCompany', e.target.value)}
-                  placeholder="Enter current company"
-                  disabled={submitting}
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="rate">Rate (per hour)</Label>
-                <Input
-                  id="rate"
-                  type="number"
-                  step="0.01"
-                  value={formData.rate}
-                  onChange={(e) => handleInputChange('rate', e.target.value)}
-                  placeholder="Enter hourly rate"
-                  disabled={submitting}
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="availability">Availability</Label>
-                <Select
-                  id="availability"
-                  value={formData.availability}
-                  onChange={(e) => handleInputChange('availability', e.target.value)}
-                  disabled={submitting}
+          {tickets.length === 0 ? (
+            <Empty
+              title="No tickets available"
+              message="No posted tickets are currently available for CV submission"
+              icon="Ticket"
+              showAction={false}
+            />
+          ) : (
+            <div className="space-y-4">
+              {tickets.map((ticket) => (
+                <motion.div
+                  key={ticket.Id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
                 >
-                  <option value="">Select availability</option>
-                  <option value="immediate">Immediate</option>
-                  <option value="1-week">1 Week Notice</option>
-                  <option value="2-weeks">2 Weeks Notice</option>
-                  <option value="1-month">1 Month Notice</option>
-                  <option value="negotiable">Negotiable</option>
-                </Select>
-              </div>
-            </div>
-
-            <div>
-              <Label>CV Files (ADB Template)</Label>
-              <FileUpload
-                onFileSelect={handleFileSelect}
-                accept=".pdf,.doc,.docx"
-                multiple={true}
-                maxSize={10 * 1024 * 1024} // 10MB
-                disabled={submitting}
-              >
-                <p className="text-sm text-gray-600 mb-2">
-                  Upload CV files in ADB template format
-                </p>
-                <p className="text-xs text-gray-400">
-                  Supported formats: PDF, DOC, DOCX
-                  <br />
-                  Max size: 10MB per file
-                </p>
-              </FileUpload>
-            </div>
-
-            {formData.files.length > 0 && (
-              <div>
-                <Label>Selected Files ({formData.files.length})</Label>
-                <div className="mt-2 space-y-2">
-                  {formData.files.map((file, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <ApperIcon name="FileText" className="w-4 h-4 text-gray-500" />
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                          <ApperIcon name="Ticket" className="w-5 h-5 text-secondary" />
+                        </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                          <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
+                          <h4 className="font-semibold text-gray-900">{ticket.title}</h4>
+                          <div className="flex items-center space-x-4 text-sm text-gray-500">
+                            <span>{ticket.category}</span>
+                            <span>•</span>
+                            <span>{ticket.project}</span>
+                            <span>•</span>
+                            <span>{ticket.workArrangement}</span>
+                          </div>
                         </div>
                       </div>
+                      
+                      {ticket.positions && ticket.positions.length > 0 && (
+                        <div className="ml-13 space-y-2">
+                          <p className="text-sm font-medium text-gray-700">Positions ({ticket.positions.length}):</p>
+                          {ticket.positions.map((position, idx) => (
+                            <div key={position.Id} className="p-3 bg-gray-50 rounded-lg">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="font-medium text-gray-900">{position.title}</p>
+                                  <p className="text-sm text-gray-600">
+                                    Budget: ${position.budgetRange?.min || 0}-${position.budgetRange?.max || 0}/hr
+                                  </p>
+                                  {position.skillsRequired && position.skillsRequired.length > 0 && (
+                                    <div className="flex flex-wrap gap-1 mt-2">
+                                      {position.skillsRequired.slice(0, 3).map((skill, skillIdx) => (
+                                        <Badge key={skillIdx} variant="secondary" size="sm">
+                                          {skill}
+                                        </Badge>
+                                      ))}
+                                      {position.skillsRequired.length > 3 && (
+                                        <Badge variant="secondary" size="sm">
+                                          +{position.skillsRequired.length - 3} more
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
+                    <div className="ml-4">
                       <Button
-                        type="button"
-                        variant="ghost"
+                        variant="primary"
                         size="sm"
-                        onClick={() => {
-                          setFormData(prev => ({
-                            ...prev,
-                            files: prev.files.filter((_, i) => i !== index)
-                          }));
-                        }}
-                        disabled={submitting}
+                        onClick={() => handleTicketSelect(ticket)}
+                        className="flex items-center gap-2"
                       >
-                        <ApperIcon name="X" className="w-4 h-4" />
+                        <ApperIcon name="Upload" className="w-4 h-4" />
+                        Submit CV
                       </Button>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className="flex justify-end">
-              <Button
-                type="submit"
-                variant="primary"
-                disabled={submitting || formData.files.length === 0}
-                className="flex items-center gap-2"
-              >
-                {submitting ? (
-                  <>
-                    <ApperIcon name="Loader2" className="w-4 h-4 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  <>
-                    <ApperIcon name="Upload" className="w-4 h-4" />
-                    Submit CVs ({formData.files.length})
-                  </>
-                )}
-              </Button>
+                  </div>
+                  
+                  <div className="mt-3 text-xs text-gray-400">
+                    Created: {new Date(ticket.createdDate).toLocaleDateString()} • 
+                    Supervisor: {ticket.supervisor}
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </form>
+          )}
         </CardContent>
       </Card>
 
-      {/* CV Submissions List */}
+      {/* CV Submission Modal/Form */}
+      {showSubmissionForm && selectedTicket && (
+        <Card className="border-secondary border-2">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Submit CVs for: {selectedTicket.title}</h2>
+                <p className="text-sm text-gray-600">Upload CVs using ADB template format</p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setShowSubmissionForm(false);
+                  setSelectedTicket(null);
+                  setFormData({
+                    currentCompany: '',
+                    rate: '',
+                    availability: '',
+                    files: []
+                  });
+                }}
+              >
+                <ApperIcon name="X" className="w-4 h-4" />
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <Label htmlFor="currentCompany">Current Company</Label>
+                  <Input
+                    id="currentCompany"
+                    type="text"
+                    value={formData.currentCompany}
+                    onChange={(e) => handleInputChange('currentCompany', e.target.value)}
+                    placeholder="Enter current company"
+                    disabled={submitting}
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="rate">Rate (per hour)</Label>
+                  <Input
+                    id="rate"
+                    type="number"
+                    step="0.01"
+                    value={formData.rate}
+                    onChange={(e) => handleInputChange('rate', e.target.value)}
+                    placeholder="Enter hourly rate"
+                    disabled={submitting}
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="availability">Availability</Label>
+                  <Select
+                    id="availability"
+                    value={formData.availability}
+                    onChange={(e) => handleInputChange('availability', e.target.value)}
+                    disabled={submitting}
+                  >
+                    <option value="">Select availability</option>
+                    <option value="immediate">Immediate</option>
+                    <option value="1-week">1 Week Notice</option>
+                    <option value="2-weeks">2 Weeks Notice</option>
+                    <option value="1-month">1 Month Notice</option>
+                    <option value="negotiable">Negotiable</option>
+                  </Select>
+                </div>
+              </div>
+
+              <div>
+                <Label>CV Files (ADB Template)</Label>
+                <FileUpload
+                  onFileSelect={handleFileSelect}
+                  accept=".pdf,.doc,.docx"
+                  multiple={true}
+                  maxSize={10 * 1024 * 1024} // 10MB
+                  disabled={submitting}
+                >
+                  <p className="text-sm text-gray-600 mb-2">
+                    Upload CV files in ADB template format
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    Supported formats: PDF, DOC, DOCX
+                    <br />
+                    Max size: 10MB per file
+                  </p>
+                </FileUpload>
+              </div>
+
+              {formData.files.length > 0 && (
+                <div>
+                  <Label>Selected Files ({formData.files.length})</Label>
+                  <div className="mt-2 space-y-2">
+                    {formData.files.map((file, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center space-x-3">
+                          <ApperIcon name="FileText" className="w-4 h-4 text-gray-500" />
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">{file.name}</p>
+                            <p className="text-xs text-gray-500">{formatFileSize(file.size)}</p>
+                          </div>
+                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setFormData(prev => ({
+                              ...prev,
+                              files: prev.files.filter((_, i) => i !== index)
+                            }));
+                          }}
+                          disabled={submitting}
+                        >
+                          <ApperIcon name="X" className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex justify-end space-x-3">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => {
+                    setShowSubmissionForm(false);
+                    setSelectedTicket(null);
+                    setFormData({
+                      currentCompany: '',
+                      rate: '',
+                      availability: '',
+                      files: []
+                    });
+                  }}
+                  disabled={submitting}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={submitting || formData.files.length === 0}
+                  className="flex items-center gap-2"
+                >
+                  {submitting ? (
+                    <>
+                      <ApperIcon name="Loader2" className="w-4 h-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <ApperIcon name="Upload" className="w-4 h-4" />
+                      Submit CVs ({formData.files.length})
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      )}
+
+{/* CV Submissions List */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-semibold text-gray-900">CV Submissions</h2>
-              <p className="text-sm text-gray-600">Track your submitted CVs and their status</p>
+              <p className="text-sm text-gray-600">Track your submitted CVs by ticket and their status</p>
             </div>
             <Badge variant="info">{cvSubmissions.length} Total</Badge>
           </div>
         </CardHeader>
         <CardContent>
-          {cvSubmissions.length === 0 ? (
+{cvSubmissions.length === 0 ? (
             <Empty
               title="No CV submissions"
-              message="Submit your first CV to get started"
+              message="Select a ticket and submit your first CV to get started"
               icon="FileText"
               showAction={false}
             />
@@ -323,7 +498,7 @@ const AgencyPortal = () => {
                   key={submission.Id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
@@ -332,6 +507,11 @@ const AgencyPortal = () => {
                       </div>
                       <div>
                         <h4 className="font-medium text-gray-900">{submission.fileName}</h4>
+                        {submission.ticketTitle && (
+                          <p className="text-sm font-medium text-secondary mb-1">
+                            Ticket: {submission.ticketTitle}
+                          </p>
+                        )}
                         <div className="flex items-center space-x-4 text-sm text-gray-500">
                           <span>{submission.currentCompany}</span>
                           <span>•</span>
