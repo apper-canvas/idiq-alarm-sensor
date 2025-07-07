@@ -1,15 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Route, Router, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import TORManagement from "@/components/pages/TORManagement";
+import React from "react";
+import Layout from "@/components/Layout";
+import Timesheets from "@/components/pages/Timesheets";
+import Agencies from "@/components/pages/Agencies";
+import Dashboard from "@/components/pages/Dashboard";
+import Contractors from "@/components/pages/Contractors";
+import Requisitions from "@/components/pages/Requisitions";
+import Reports from "@/components/pages/Reports";
+import Settings from "@/components/pages/Settings";
 
-import Layout from '@/components/Layout';
-import Dashboard from '@/components/pages/Dashboard';
-import Contractors from '@/components/pages/Contractors';
-import Requisitions from '@/components/pages/Requisitions';
-import Timesheets from '@/components/pages/Timesheets';
-import Reports from '@/components/pages/Reports';
-import Agencies from '@/components/pages/Agencies';
-import Settings from '@/components/pages/Settings';
 
 function App() {
   return (
@@ -17,8 +19,9 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/contractors" element={<Contractors />} />
+<Route path="/contractors" element={<Contractors />} />
           <Route path="/requisitions" element={<Requisitions />} />
+          <Route path="/tors" element={<TORManagement />} />
           <Route path="/timesheets" element={<Timesheets />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/agencies" element={<Agencies />} />

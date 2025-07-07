@@ -7,10 +7,11 @@ import { cn } from '@/utils/cn';
 const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
   
-  const navigation = [
+const navigation = [
     { name: 'Dashboard', href: '/', icon: 'LayoutDashboard' },
     { name: 'Contractors', href: '/contractors', icon: 'Users' },
     { name: 'Requisitions', href: '/requisitions', icon: 'FileText' },
+    { name: 'TOR Management', href: '/tors', icon: 'FileCheck' },
     { name: 'Timesheets', href: '/timesheets', icon: 'Clock' },
     { name: 'Reports', href: '/reports', icon: 'BarChart3' },
     { name: 'Agencies', href: '/agencies', icon: 'Building2' },

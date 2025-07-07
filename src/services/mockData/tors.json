@@ -1,0 +1,112 @@
+[
+  {
+    "Id": 1,
+    "title": "Infrastructure Development Consulting Services",
+    "category": "consulting",
+    "description": "Comprehensive consulting services for infrastructure development projects following ADB guidelines",
+    "duration": "12 months",
+    "budget": "$150,000",
+    "status": "active",
+    "createdDate": "2024-01-15T09:00:00Z",
+    "lastModified": "2024-01-15T09:00:00Z",
+    "sections": {
+      "executiveSummary": "This Terms of Reference (TOR) outlines the scope and requirements for infrastructure development consulting services. The consultant will provide technical expertise and support for project implementation following Asian Development Bank (ADB) standards and guidelines.",
+      "background": "The Asian Development Bank is committed to supporting sustainable infrastructure development across the Asia-Pacific region. This project aims to enhance infrastructure capacity and promote economic growth through strategic consulting services.",
+      "objectives": "1. Provide technical advisory services for infrastructure development\n2. Ensure compliance with ADB environmental and social standards\n3. Support project implementation and monitoring\n4. Build local capacity and knowledge transfer",
+      "scopeOfWork": "The consultant will be responsible for:\n- Conducting feasibility studies and technical assessments\n- Developing implementation plans and strategies\n- Providing ongoing technical support and monitoring\n- Ensuring compliance with ADB policies and procedures\n- Facilitating stakeholder engagement and consultation",
+      "deliverables": "1. Inception Report within 2 weeks of contract signing\n2. Technical Assessment Report within 3 months\n3. Implementation Plan within 4 months\n4. Monthly Progress Reports\n5. Final Report and Recommendations",
+      "timeline": "Phase 1: Inception and Assessment (Months 1-3)\nPhase 2: Planning and Strategy Development (Months 4-6)\nPhase 3: Implementation Support (Months 7-11)\nPhase 4: Final Review and Reporting (Month 12)",
+      "qualifications": "The consultant must have:\n- Minimum 10 years experience in infrastructure development\n- Advanced degree in Engineering, Economics, or related field\n- Experience with ADB projects and procedures\n- Strong analytical and communication skills\n- Regional experience in Asia-Pacific",
+      "budget": "Total budget: $150,000\n- Personnel costs: $120,000 (80%)\n- Travel and accommodation: $20,000 (13%)\n- Other expenses: $10,000 (7%)",
+      "termsConditions": "1. Contract duration: 12 months from signing date\n2. Payment terms: Monthly payments based on deliverables\n3. Intellectual property rights remain with ADB\n4. Confidentiality requirements apply\n5. Performance standards and evaluation criteria as per ADB guidelines"
+    }
+  },
+  {
+    "Id": 2,
+    "title": "Financial Sector Technical Assistance",
+    "category": "technical",
+    "description": "Technical assistance for strengthening financial sector regulatory frameworks and institutional capacity",
+    "duration": "8 months",
+    "budget": "$95,000",
+    "status": "active",
+    "createdDate": "2024-01-10T14:30:00Z",
+    "lastModified": "2024-01-10T14:30:00Z",
+    "sections": {
+      "executiveSummary": "This TOR defines technical assistance services for enhancing financial sector regulatory frameworks and building institutional capacity in accordance with ADB's financial sector development strategy.",
+      "background": "Financial sector development is crucial for economic growth and poverty reduction. This technical assistance aims to strengthen regulatory frameworks and improve institutional capacity for effective financial sector oversight.",
+      "objectives": "1. Strengthen regulatory and supervisory frameworks\n2. Enhance institutional capacity of financial regulators\n3. Improve risk management and compliance systems\n4. Support financial inclusion initiatives",
+      "scopeOfWork": "Technical assistance will include:\n- Assessment of current regulatory frameworks\n- Development of enhanced regulatory guidelines\n- Training and capacity building programs\n- Implementation support and monitoring\n- Knowledge transfer and best practices sharing",
+      "deliverables": "1. Regulatory Framework Assessment Report\n2. Enhanced Regulatory Guidelines\n3. Training Program Materials\n4. Capacity Building Workshop Reports\n5. Implementation Support Documentation",
+      "timeline": "Month 1-2: Assessment and Analysis\nMonth 3-4: Framework Development\nMonth 5-6: Training and Capacity Building\nMonth 7-8: Implementation Support and Final Reporting",
+      "qualifications": "Required expertise:\n- Advanced degree in Finance, Economics, or Law\n- Minimum 8 years in financial sector regulation\n- Experience with international regulatory standards\n- Knowledge of ADB procedures and policies\n- Strong training and capacity building skills",
+      "budget": "Total allocation: $95,000\n- Consultant fees: $75,000\n- Training materials and workshops: $15,000\n- Administrative costs: $5,000",
+      "termsConditions": "1. Performance-based payments\n2. Regular progress reporting required\n3. Adherence to ADB's technical assistance guidelines\n4. Quality assurance and peer review processes\n5. Knowledge management and dissemination requirements"
+    }
+  },
+  {
+    "Id": 3,
+    "title": "Procurement Support Services",
+    "category": "procurement",
+    "description": "Specialized procurement support for large-scale infrastructure projects with focus on transparency and efficiency",
+    "duration": "6 months",
+    "budget": "$75,000",
+    "status": "draft",
+    "createdDate": "2024-01-08T11:15:00Z",
+    "lastModified": "2024-01-08T11:15:00Z",
+    "sections": {
+      "executiveSummary": "Procurement support services to ensure transparent, efficient, and competitive procurement processes for infrastructure development projects in compliance with ADB procurement guidelines.",
+      "background": "Effective procurement is essential for project success and value for money. This support service aims to enhance procurement capacity and ensure compliance with international standards and ADB requirements.",
+      "objectives": "1. Ensure transparent and competitive procurement processes\n2. Build local procurement capacity\n3. Implement best practices in procurement management\n4. Ensure compliance with ADB procurement guidelines",
+      "scopeOfWork": "Services include:\n- Procurement planning and strategy development\n- Bid document preparation and review\n- Evaluation support and guidance\n- Contract management advisory services\n- Capacity building and training programs",
+      "deliverables": "1. Procurement Strategy Document\n2. Standard Bidding Documents\n3. Evaluation Reports and Recommendations\n4. Training Materials and Workshops\n5. Procurement Performance Assessment",
+      "timeline": "Phase 1: Planning and Preparation (Months 1-2)\nPhase 2: Implementation Support (Months 3-5)\nPhase 3: Evaluation and Reporting (Month 6)",
+      "qualifications": "Required qualifications:\n- Professional certification in procurement (CIPS/CPPB preferred)\n- Minimum 7 years in procurement management\n- Experience with international development projects\n- Knowledge of ADB procurement procedures\n- Strong analytical and communication skills",
+      "budget": "Budget breakdown: $75,000\n- Professional services: $60,000\n- Training and workshops: $10,000\n- Documentation and materials: $5,000",
+      "termsConditions": "1. Milestone-based payment schedule\n2. Regular monitoring and evaluation\n3. Compliance with ADB's anticorruption policy\n4. Quality standards and performance indicators\n5. Knowledge transfer and documentation requirements"
+    }
+  },
+  {
+    "Id": 4,
+    "title": "Capacity Building for Climate Resilience",
+    "category": "capacity",
+    "description": "Comprehensive capacity building program for climate resilience and adaptation planning",
+    "duration": "10 months",
+    "budget": "$120,000",
+    "status": "active",
+    "createdDate": "2024-01-05T16:45:00Z",
+    "lastModified": "2024-01-05T16:45:00Z",
+    "sections": {
+      "executiveSummary": "Capacity building services to strengthen institutional and technical capacity for climate resilience planning and implementation, aligned with ADB's climate change operational framework.",
+      "background": "Climate change poses significant challenges requiring enhanced capacity for adaptation and resilience building. This program aims to build institutional capacity for effective climate resilience planning and implementation.",
+      "objectives": "1. Build institutional capacity for climate planning\n2. Enhance technical skills in climate risk assessment\n3. Develop climate adaptation strategies\n4. Strengthen monitoring and evaluation systems",
+      "scopeOfWork": "The program will include:\n- Capacity assessment and gap analysis\n- Training program development and delivery\n- Technical assistance for strategy development\n- Mentoring and coaching support\n- Knowledge sharing and networking activities",
+      "deliverables": "1. Capacity Assessment Report\n2. Training Program Curriculum\n3. Climate Adaptation Strategy\n4. Monitoring and Evaluation Framework\n5. Knowledge Sharing Platform",
+      "timeline": "Months 1-2: Assessment and Planning\nMonths 3-5: Training Program Implementation\nMonths 6-8: Strategy Development Support\nMonths 9-10: Evaluation and Reporting",
+      "qualifications": "Essential requirements:\n- Advanced degree in Environmental Science or related field\n- Minimum 8 years in climate change adaptation\n- Experience in capacity building and training\n- Knowledge of ADB's climate operations\n- Strong facilitation and communication skills",
+      "budget": "Total budget: $120,000\n- Personnel costs: $90,000\n- Training and workshops: $20,000\n- Materials and resources: $10,000",
+      "termsConditions": "1. Results-based monitoring and evaluation\n2. Participatory approach and stakeholder engagement\n3. Gender-inclusive programming requirements\n4. Environmental and social safeguards compliance\n5. Sustainability and long-term impact focus"
+    }
+  },
+  {
+    "Id": 5,
+    "title": "Economic Policy Advisory Services",
+    "category": "advisory",
+    "description": "High-level economic policy advisory services for macroeconomic management and structural reforms",
+    "duration": "15 months",
+    "budget": "$200,000",
+    "status": "active",
+    "createdDate": "2024-01-03T10:20:00Z",
+    "lastModified": "2024-01-03T10:20:00Z",
+    "sections": {
+      "executiveSummary": "Senior-level economic policy advisory services to support government in macroeconomic management, structural reforms, and policy development in line with ADB's development strategy.",
+      "background": "Sound economic policies are fundamental for sustainable development and poverty reduction. This advisory service aims to support government in developing and implementing effective economic policies and reforms.",
+      "objectives": "1. Provide high-level policy advice and recommendations\n2. Support macroeconomic analysis and forecasting\n3. Assist in structural reform design and implementation\n4. Strengthen policy coordination and implementation capacity",
+      "scopeOfWork": "Advisory services will encompass:\n- Macroeconomic analysis and policy recommendations\n- Structural reform strategy development\n- Policy impact assessment and evaluation\n- Institutional strengthening support\n- Stakeholder consultation and coordination",
+      "deliverables": "1. Quarterly Economic Assessment Reports\n2. Policy Recommendation Papers\n3. Structural Reform Strategy\n4. Implementation Roadmap\n5. Final Advisory Report",
+      "timeline": "Phase 1: Situation Analysis (Months 1-3)\nPhase 2: Policy Development (Months 4-9)\nPhase 3: Implementation Support (Months 10-14)\nPhase 4: Final Assessment (Month 15)",
+      "qualifications": "Senior economist with:\n- PhD in Economics or equivalent experience\n- Minimum 15 years in economic policy advisory\n- Experience with multilateral development banks\n- Regional expertise and government advisory experience\n- Excellent analytical and communication skills",
+      "budget": "Total fee: $200,000\n- Senior advisor fees: $160,000\n- Research and analysis support: $25,000\n- Travel and operational costs: $15,000",
+      "termsConditions": "1. High-level access and confidentiality requirements\n2. Regular briefing and consultation sessions\n3. Policy coherence and coordination emphasis\n4. Evidence-based recommendations and analysis\n5. Long-term sustainability and impact focus"
+    }
+  }
+]
