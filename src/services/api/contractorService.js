@@ -53,5 +53,6 @@ return { success: true };
   }
 };
 
-// Re-export timeOffService for convenience
+// Re-export timeOffService and overtimeService for convenience
 export { timeOffService } from './timeOffService';
+export { overtimeService } from './overtimeService';

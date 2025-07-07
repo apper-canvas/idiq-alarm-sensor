@@ -8,17 +8,22 @@ import StatusBadge from '@/components/molecules/StatusBadge';
 import Loading from '@/components/ui/Loading';
 import Error from '@/components/ui/Error';
 import ApperIcon from '@/components/ApperIcon';
-import { contractorService } from '@/services/api/contractorService';
+import { contractorService, timeOffService } from '@/services/api/contractorService';
+import { overtimeService } from '@/services/api/overtimeService';
 
 const ContractorDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [contractor, setContractor] = useState(null);
+const [contractor, setContractor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeSection, setActiveSection] = useState('personal');
-  useEffect(() => {
+  const [timeOffData, setTimeOffData] = useState([]);
+  const [overtimeData, setOvertimeData] = useState([]);
+useEffect(() => {
     loadContractor();
+    loadTimeOffData();
+    loadOvertimeData();
   }, [id]);
 
   const loadContractor = async () => {
@@ -32,6 +37,32 @@ const ContractorDetails = () => {
     } finally {
       setLoading(false);
     }
+};
+
+  const loadTimeOffData = async () => {
+    try {
+      const data = await timeOffService.getAll();
+      // Filter time off records for this contractor (assuming employeeName matches)
+      const contractorTimeOff = data.filter(record => 
+        record.employeeName === contractor?.name
+      );
+      setTimeOffData(contractorTimeOff);
+    } catch (err) {
+      console.error('Error loading time off data:', err);
+    }
+  };
+
+  const loadOvertimeData = async () => {
+    try {
+      const data = await overtimeService.getAll();
+      // Filter overtime records for this contractor ID
+      const contractorOvertime = data.filter(record => 
+        record.contractorId === parseInt(id)
+      );
+      setOvertimeData(contractorOvertime);
+    } catch (err) {
+      console.error('Error loading overtime data:', err);
+    }
   };
 
   const handleAction = (actionName, actionType = 'info') => {
@@ -44,8 +75,9 @@ const ContractorDetails = () => {
       'View Performance': 'Performance review functionality coming soon',
       'Update Status': 'Status update functionality coming soon',
       'View Assignment': 'Assignment details functionality coming soon',
-      'Submit Timesheet': 'Timesheet submission functionality coming soon',
+'Submit Timesheet': 'Timesheet submission functionality coming soon',
       'Request Time Off': 'Time off request functionality coming soon',
+      'Submit Overtime': 'Overtime submission functionality coming soon',
       'View Schedule': 'Schedule view functionality coming soon',
       'Update Profile': 'Profile update functionality coming soon'
     };
@@ -83,10 +115,11 @@ const ContractorDetails = () => {
   if (error) return <Error title="Error Loading Contractor" message={error} onRetry={loadContractor} />;
 if (!contractor) return <Error title="Contractor Not Found" message="The requested contractor could not be found." />;
 
-  const menuItems = [
+const menuItems = [
     { id: 'personal', label: 'Personal Information', icon: 'User' },
     { id: 'financial', label: 'Financial Information', icon: 'DollarSign' },
     { id: 'history', label: 'Position History', icon: 'Clock' },
+    { id: 'timeoff', label: 'Time Off & Overtime History', icon: 'Calendar' },
     { id: 'equipment', label: 'Equipment & Access', icon: 'Monitor' }
   ];
 
@@ -639,6 +672,157 @@ if (!contractor) return <Error title="Contractor Not Found" message="The request
               </div>
             </CardContent>
           </Card>
+);
+
+      case 'timeoff':
+        // Calculate YTD totals for 2024
+        const currentYear = 2024;
+        const ytdTimeOff = timeOffData
+          .filter(record => {
+            const recordYear = new Date(record.startDate).getFullYear();
+            return recordYear === currentYear && record.status === 'Approved';
+          })
+          .reduce((total, record) => total + record.hours, 0);
+
+        const ytdOvertime = overtimeData
+          .filter(record => {
+            const recordYear = new Date(record.date).getFullYear();
+            return recordYear === currentYear && record.status === 'approved';
+          })
+          .reduce((total, record) => total + record.hours, 0);
+
+        return (
+          <div className="space-y-6">
+            {/* Time Off Section */}
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl font-semibold text-gray-900">Time Off Taken (2024)</h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleAction('Request Time Off')}
+                  >
+                    <ApperIcon name="Calendar" size={16} className="mr-2" />
+                    Request Time Off
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* Time Off Records */}
+                  {timeOffData.length > 0 ? (
+                    <div className="space-y-3">
+                      {timeOffData
+                        .filter(record => new Date(record.startDate).getFullYear() === currentYear)
+                        .sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
+                        .map((record, index) => (
+                        <div key={record.Id} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2">
+                              <span className="text-sm text-gray-600">
+                                {new Date(record.startDate).toLocaleDateString('en-US', { 
+                                  day: '2-digit', 
+                                  month: 'short' 
+                                })}
+                              </span>
+                              <span className="text-sm font-medium text-gray-900">
+                                {record.reason} ({record.hours} hrs)
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <StatusBadge status={record.status.toLowerCase()} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 text-gray-500">
+                      <ApperIcon name="Calendar" size={48} className="mx-auto mb-4 text-gray-300" />
+                      <p>No time off records found for 2024</p>
+                    </div>
+                  )}
+                  
+                  {/* YTD Total */}
+                  <div className="border-t pt-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-gray-900">Total YTD:</span>
+                      <span className="text-lg font-bold text-primary">{ytdTimeOff} hours</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Overtime History Section */}
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl font-semibold text-gray-900">Overtime History (2024)</h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleAction('Submit Overtime')}
+                  >
+                    <ApperIcon name="Clock" size={16} className="mr-2" />
+                    Submit Overtime
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {/* Overtime Records */}
+                  {overtimeData.length > 0 ? (
+                    <div className="space-y-3">
+                      {overtimeData
+                        .filter(record => new Date(record.date).getFullYear() === currentYear)
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .map((record, index) => (
+                        <div key={record.Id} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2">
+                              <span className="text-sm text-gray-600">
+                                Week of {new Date(record.date).toLocaleDateString('en-US', { 
+                                  day: 'numeric', 
+                                  month: 'short' 
+                                })}
+                              </span>
+                              <span className="text-sm font-medium text-gray-900">
+                                {record.hours} hrs
+                              </span>
+                              <span className="text-sm text-gray-600">
+                                - {record.reason}
+                              </span>
+                            </div>
+                            {record.description && (
+                              <p className="text-xs text-gray-500 mt-1">{record.description}</p>
+                            )}
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <StatusBadge status={record.status} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8 text-gray-500">
+                      <ApperIcon name="Clock" size={48} className="mx-auto mb-4 text-gray-300" />
+                      <p>No overtime records found for 2024</p>
+                    </div>
+                  )}
+                  
+                  {/* YTD Total */}
+                  <div className="border-t pt-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-gray-900">Total YTD:</span>
+                      <span className="text-lg font-bold text-accent">{ytdOvertime} hours</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         );
 
       case 'equipment':
