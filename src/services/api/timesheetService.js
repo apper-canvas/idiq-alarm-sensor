@@ -22,7 +22,7 @@ let workplansData = [
     status: "active",
     createdDate: "2024-01-20T00:00:00.000Z"
   },
-  {
+{
     Id: 3,
     name: "Operations Optimization",
     description: "Process improvement and operational efficiency",
@@ -30,6 +30,15 @@ let workplansData = [
     approverEmail: "lisa.anderson@bank.com",
     status: "active",
     createdDate: "2024-01-25T00:00:00.000Z"
+  },
+  {
+    Id: 4,
+    name: "Customer Experience Enhancement",
+    description: "Digital transformation and customer service optimization",
+    approverName: "Rachel Kim",
+    approverEmail: "rachel.kim@bank.com",
+    status: "active",
+    createdDate: "2024-01-30T00:00:00.000Z"
   }
 ];
 
