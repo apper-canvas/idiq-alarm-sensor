@@ -1,5 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import TORManagement from "@/components/pages/TORManagement";
 import React from "react";
@@ -14,8 +14,8 @@ import Settings from "@/components/pages/Settings";
 
 
 function App() {
-  return (
-    <Router>
+return (
+    <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -42,8 +42,8 @@ function App() {
         theme="light"
         className="toast-container"
         style={{ zIndex: 9999 }}
-      />
-    </Router>
+/>
+    </BrowserRouter>
   );
 }
 
