@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import ApperIcon from "@/components/ApperIcon";
@@ -11,6 +12,7 @@ import StatusBadge from "@/components/molecules/StatusBadge";
 import SearchBar from "@/components/molecules/SearchBar";
 import { ticketService } from "@/services/api/ticketService";
 const RequisitionsList = () => {
+  const navigate = useNavigate();
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -18,7 +20,6 @@ const RequisitionsList = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [actionLoading, setActionLoading] = useState({});
   const [agencies, setAgencies] = useState([]);
-
   const loadTickets = async () => {
     try {
       setLoading(true);
@@ -292,12 +293,20 @@ if (tickets.length === 0) {
                             <td className="py-4 px-6">
                                 <StatusBadge status={ticket.status} type="ticket" />
                             </td>
-                            <td className="py-4 px-6">
+<td className="py-4 px-6">
                                 <div className="flex items-center gap-2">
-                                    <Button variant="ghost" size="sm" title="View Details">
+                                    <Button 
+                                        variant="ghost" 
+                                        size="sm" 
+                                        title="View Details"
+                                        onClick={() => navigate(`/requisitions/${ticket.Id}`)}>
                                         <ApperIcon name="Eye" className="w-4 h-4" />
                                     </Button>
-                                    <Button variant="ghost" size="sm" title="Edit">
+                                    <Button 
+                                        variant="ghost" 
+                                        size="sm" 
+                                        title="Edit"
+                                        onClick={() => navigate(`/requisitions/${ticket.Id}`)}>
                                         <ApperIcon name="Edit" className="w-4 h-4" />
                                     </Button>
                                     {/* Workflow Actions */}
