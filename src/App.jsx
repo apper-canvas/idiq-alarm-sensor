@@ -9,6 +9,7 @@ import Agencies from "@/components/pages/Agencies";
 import Dashboard from "@/components/pages/Dashboard";
 import Contractors from "@/components/pages/Contractors";
 import Requisitions from "@/components/pages/Requisitions";
+import RequisitionDetails from "@/components/pages/RequisitionDetails";
 import Reports from "@/components/pages/Reports";
 import Settings from "@/components/pages/Settings";
 import TicketCreate from "@/components/pages/TicketCreate";
@@ -19,9 +20,10 @@ return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+<Route path="/" element={<Dashboard />} />
 <Route path="/contractors" element={<Contractors />} />
           <Route path="/requisitions" element={<Requisitions />} />
+          <Route path="/requisitions/:id" element={<RequisitionDetails />} />
           <Route path="/tors" element={<TORManagement />} />
           <Route path="/timesheets" element={<Timesheets />} />
 <Route path="/reports" element={<Reports />} />
