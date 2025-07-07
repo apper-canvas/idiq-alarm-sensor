@@ -70,12 +70,12 @@ const Sidebar = ({ isOpen, onClose }) => {
               <NavLink
                 to={item.href}
                 onClick={onItemClick}
-                className={({ isActive }) =>
+className={({ isActive }) =>
                   cn(
                     "flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                     isActive
                       ? "bg-white text-primary shadow-sm"
-                      : "text-primary/80 hover:text-white hover:bg-primary/20"
+                      : "text-white/90 hover:text-white hover:bg-primary/20"
                   )
                 }
               >
