@@ -16,7 +16,7 @@ import Reports from "@/components/pages/Reports";
 import Settings from "@/components/pages/Settings";
 import TicketCreate from "@/components/pages/TicketCreate";
 import AgencyPortal from "@/components/pages/AgencyPortal";
-
+import ContractorDetails from "@/components/pages/ContractorDetails";
 function App() {
 return (
     <BrowserRouter>
@@ -24,6 +24,7 @@ return (
         <Routes>
 <Route path="/" element={<Dashboard />} />
 <Route path="/contractors" element={<Contractors />} />
+          <Route path="/contractors/:id" element={<ContractorDetails />} />
 <Route path="/requisitions" element={<Requisitions />} />
           <Route path="/requisitions/:id" element={<RequisitionDetails />} />
 <Route path="/tors" element={<TORManagement />} />
