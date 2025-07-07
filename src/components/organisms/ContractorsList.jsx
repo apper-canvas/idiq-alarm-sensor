@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/atoms/Card';
 import Button from '@/components/atoms/Button';
@@ -11,6 +12,7 @@ import ApperIcon from '@/components/ApperIcon';
 import { contractorService } from '@/services/api/contractorService';
 
 const ContractorsList = () => {
+  const navigate = useNavigate();
   const [contractors, setContractors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -77,7 +79,15 @@ const filteredContractors = contractors.filter(contractor => {
       case 'expired': return 'AlertTriangle';
       case 'expiring': return 'Clock';
       default: return null;
-    }
+}
+  };
+
+  const handleViewContractor = (contractorId) => {
+    navigate(`/contractors/${contractorId}`);
+  };
+
+  const handleEditContractor = (contractorId) => {
+    navigate(`/contractors/${contractorId}`);
   };
 
   if (loading) {
@@ -206,12 +216,20 @@ const filteredContractors = contractors.filter(contractor => {
                     <td className="py-4 px-6">
                       <StatusBadge status={contractor.status} type="contractor" />
                     </td>
-                    <td className="py-4 px-6">
+<td className="py-4 px-6">
                       <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm">
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleViewContractor(contractor.Id)}
+                        >
                           <ApperIcon name="Eye" className="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="sm">
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => handleEditContractor(contractor.Id)}
+                        >
                           <ApperIcon name="Edit" className="w-4 h-4" />
                         </Button>
                         <Button variant="ghost" size="sm">
