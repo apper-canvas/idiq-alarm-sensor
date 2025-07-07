@@ -14,6 +14,7 @@ const navigation = [
     { name: 'Requisitions', href: '/requisitions', icon: 'FileText' },
     { name: 'TOR Management', href: '/tors', icon: 'FileCheck' },
     { name: 'Timesheet Management', href: '/timesheets', icon: 'Clock' },
+    { name: 'Overtime Management', href: '/overtime', icon: 'Timer' },
     { name: 'Time Off Management', href: '/time-off', icon: 'Calendar' },
     { name: 'Reports', href: '/reports', icon: 'BarChart3' },
     { name: 'Agencies', href: '/agencies', icon: 'Building2' },

@@ -317,6 +317,17 @@ end.setDate(end.getDate() + 6);
                                             <ApperIcon name="X" className="w-4 h-4" />
                                         </Button>
                                     </>}
+                                    {timesheet.overtimeHours > 0 && timesheet.status === "approved" && (
+                                        <Button 
+                                            variant="secondary" 
+                                            size="sm" 
+                                            className="text-warning hover:text-warning-dark"
+                                            onClick={() => window.location.href = '/overtime'}
+                                            title="Submit overtime for approval"
+                                        >
+                                            <ApperIcon name="Timer" className="w-4 h-4" />
+                                        </Button>
+                                    )}
                                 </div>
                             </td>
                         </motion.tr>)}

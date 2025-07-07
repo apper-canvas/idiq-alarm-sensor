@@ -2,6 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import TORManagement from "@/components/pages/TORManagement";
+import OvertimeManagement from "@/components/pages/OvertimeManagement";
 import TimeOffManagement from "@/components/pages/TimeOffManagement";
 import React from "react";
 import Layout from "@/components/Layout";
@@ -25,9 +26,10 @@ return (
 <Route path="/contractors" element={<Contractors />} />
 <Route path="/requisitions" element={<Requisitions />} />
           <Route path="/requisitions/:id" element={<RequisitionDetails />} />
-          <Route path="/tors" element={<TORManagement />} />
+<Route path="/tors" element={<TORManagement />} />
 <Route path="/timesheets" element={<Timesheets />} />
           <Route path="/timesheets/workplans" element={<Timesheets />} />
+          <Route path="/overtime" element={<OvertimeManagement />} />
           <Route path="/time-off" element={<TimeOffManagement />} />
 <Route path="/reports" element={<Reports />} />
           <Route path="/agencies" element={<Agencies />} />
