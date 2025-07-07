@@ -9,9 +9,10 @@ import Error from "@/components/ui/Error";
 import Loading from "@/components/ui/Loading";
 import Contractors from "@/components/pages/Contractors";
 import StatusBadge from "@/components/molecules/StatusBadge";
-import { overtimeService } from "@/services/api/overtimeService";
 import { contractorService } from "@/services/api/contractorService";
+import { overtimeService } from "@/services/api/overtimeService";
 import { timeOffService } from "@/services/api/timeOffService";
+
 const ContractorDetails = () => {
   const { id } = useParams();
 const navigate = useNavigate();
@@ -398,17 +399,18 @@ const menuItems = [
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Rate and Billing Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Current Rate
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-2xl font-bold text-gray-900">
                       {formatCurrency(contractor.hourlyRate)}
                     </span>
                     <span className="text-sm text-gray-600">/hour</span>
                   </div>
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Billing Type
