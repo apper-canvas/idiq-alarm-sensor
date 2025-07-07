@@ -41,6 +41,9 @@ export const contractorService = {
     if (index === -1) throw new Error('Contractor not found');
     
     contractorsData.splice(index, 1);
-    return { success: true };
+return { success: true };
   }
 };
+
+// Re-export timeOffService for convenience
+export { timeOffService } from './timeOffService';
