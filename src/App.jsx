@@ -12,6 +12,7 @@ import Requisitions from "@/components/pages/Requisitions";
 import Reports from "@/components/pages/Reports";
 import Settings from "@/components/pages/Settings";
 import TicketCreate from "@/components/pages/TicketCreate";
+import AgencyPortal from "@/components/pages/AgencyPortal";
 
 function App() {
 return (
@@ -27,6 +28,7 @@ return (
           <Route path="/agencies" element={<Agencies />} />
           <Route path="/tickets/create" element={<TicketCreate />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/agency-portal" element={<AgencyPortal />} />
         </Routes>
       </Layout>
       
