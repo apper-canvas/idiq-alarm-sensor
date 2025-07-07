@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { Card, CardHeader, CardContent } from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import Input from '@/components/atoms/Input';
-import Select from '@/components/atoms/Select';
-import Label from '@/components/atoms/Label';
-import FileUpload from '@/components/atoms/FileUpload';
-import Badge from '@/components/atoms/Badge';
-import Loading from '@/components/ui/Loading';
-import Error from '@/components/ui/Error';
-import Empty from '@/components/ui/Empty';
-import ApperIcon from '@/components/ApperIcon';
-import { cvSubmissionService } from '@/services/api/cvSubmissionService';
-import { ticketService } from '@/services/api/ticketService';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Select from "@/components/atoms/Select";
+import Label from "@/components/atoms/Label";
+import Button from "@/components/atoms/Button";
+import { Card, CardContent, CardHeader } from "@/components/atoms/Card";
+import Input from "@/components/atoms/Input";
+import FileUpload from "@/components/atoms/FileUpload";
+import Empty from "@/components/ui/Empty";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import { cvSubmissionService } from "@/services/api/cvSubmissionService";
+import { ticketService } from "@/services/api/ticketService";
 const AgencyPortal = () => {
   const [tickets, setTickets] = useState([]);
   const [cvSubmissions, setCvSubmissions] = useState([]);
@@ -166,12 +166,22 @@ const handleTicketSelect = (ticket) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
-  const getStatusColor = (status) => {
+const getStatusColor = (status) => {
     switch (status) {
       case 'submitted': return 'info';
       case 'reviewing': return 'warning';
       case 'approved': return 'success';
       case 'rejected': return 'error';
+      default: return 'secondary';
+    }
+  };
+
+  const getQualificationColor = (status) => {
+    switch (status) {
+      case 'qualified': return 'success';
+      case 'partially-qualified': return 'warning';
+      case 'not-qualified': return 'error';
+      case 'pending': return 'info';
       default: return 'secondary';
     }
   };
@@ -493,19 +503,19 @@ if (ticketsLoading || loading) {
             />
           ) : (
             <div className="space-y-4">
-              {cvSubmissions.map((submission) => (
+{cvSubmissions.map((submission) => (
                 <motion.div
                   key={submission.Id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+                  className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
                         <ApperIcon name="FileText" className="w-5 h-5 text-secondary" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h4 className="font-medium text-gray-900">{submission.fileName}</h4>
                         {submission.ticketTitle && (
                           <p className="text-sm font-medium text-secondary mb-1">
@@ -521,6 +531,75 @@ className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shad
                           <span>•</span>
                           <span>{formatFileSize(submission.fileSize)}</span>
                         </div>
+                        
+                        {/* Qualification Analysis Section */}
+                        {submission.qualificationAnalysis && (
+                          <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center space-x-2">
+                                <ApperIcon name="CheckCircle" className="w-4 h-4 text-secondary" />
+                                <span className="text-sm font-medium text-gray-700">Qualification Analysis</span>
+                              </div>
+                              <Badge variant={getQualificationColor(submission.qualificationAnalysis.status)} size="sm">
+                                {submission.qualificationAnalysis.status}
+                              </Badge>
+                            </div>
+                            
+                            {submission.qualificationAnalysis.torComparison && (
+                              <div className="mb-2">
+                                <div className="flex items-center space-x-2 text-sm">
+                                  <span className="text-gray-600">TOR Match:</span>
+                                  <span className="font-medium text-gray-900">
+                                    {submission.qualificationAnalysis.torComparison.matchPercentage}%
+                                  </span>
+                                  <span className="text-gray-500">
+                                    ({submission.qualificationAnalysis.torComparison.matchedSkills.length}/{submission.qualificationAnalysis.torComparison.totalRequired} skills)
+                                  </span>
+                                </div>
+                                
+                                {submission.qualificationAnalysis.torComparison.matchedSkills.length > 0 && (
+                                  <div className="mt-1">
+                                    <span className="text-xs text-gray-500">Matched: </span>
+                                    <div className="inline-flex flex-wrap gap-1 mt-1">
+                                      {submission.qualificationAnalysis.torComparison.matchedSkills.slice(0, 3).map((skill, idx) => (
+                                        <Badge key={idx} variant="success" size="sm">
+                                          {skill}
+                                        </Badge>
+                                      ))}
+                                      {submission.qualificationAnalysis.torComparison.matchedSkills.length > 3 && (
+                                        <Badge variant="success" size="sm">
+                                          +{submission.qualificationAnalysis.torComparison.matchedSkills.length - 3}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
+                                
+                                {submission.qualificationAnalysis.torComparison.missingSkills.length > 0 && (
+                                  <div className="mt-1">
+                                    <span className="text-xs text-gray-500">Missing: </span>
+                                    <div className="inline-flex flex-wrap gap-1 mt-1">
+                                      {submission.qualificationAnalysis.torComparison.missingSkills.slice(0, 2).map((skill, idx) => (
+                                        <Badge key={idx} variant="warning" size="sm">
+                                          {skill}
+                                        </Badge>
+                                      ))}
+                                      {submission.qualificationAnalysis.torComparison.missingSkills.length > 2 && (
+                                        <Badge variant="warning" size="sm">
+                                          +{submission.qualificationAnalysis.torComparison.missingSkills.length - 2}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            
+                            <div className="text-xs text-gray-600 mt-2 border-t pt-2">
+                              <strong>Summary:</strong> {submission.qualificationAnalysis.checkpoint}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                     
@@ -540,6 +619,9 @@ className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shad
                   
                   <div className="mt-2 text-xs text-gray-400">
                     Submitted: {new Date(submission.uploadDate).toLocaleDateString()}
+                    {submission.qualificationAnalysis && (
+                      <span> • Analyzed: {new Date(submission.qualificationAnalysis.analyzedDate).toLocaleDateString()}</span>
+                    )}
                   </div>
                 </motion.div>
               ))}

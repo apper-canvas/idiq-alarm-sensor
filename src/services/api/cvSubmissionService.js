@@ -42,7 +42,7 @@ export const cvSubmissionService = {
     return { ...submission };
   },
 
-  async create(submissionData) {
+async create(submissionData) {
     await delay(500);
     
     // Auto-generate integer ID
@@ -51,11 +51,21 @@ export const cvSubmissionService = {
       ...submissionData,
       Id: lastId,
       uploadDate: submissionData.uploadDate || new Date().toISOString(),
-      status: submissionData.status || 'submitted'
+      status: submissionData.status || 'submitted',
+      qualificationAnalysis: null // Will be populated by qualification service
     };
     
     cvSubmissions.push(newSubmission);
     return { ...newSubmission };
+  },
+
+  async updateQualificationAnalysis(id, qualificationData) {
+    await delay(200);
+    const index = cvSubmissions.findIndex(c => c.Id === parseInt(id));
+    if (index === -1) throw new Error('CV submission not found');
+    
+    cvSubmissions[index].qualificationAnalysis = qualificationData;
+    return { ...cvSubmissions[index] };
   },
 
   async update(id, updateData) {
