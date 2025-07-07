@@ -2,23 +2,289 @@
   {
     "Id": 1,
     "title": "Senior Java Developer",
-    "department": "Technology",
+    "category": "IT Development",
+    "department": "IT Division",
     "requester": "Sarah Johnson",
+    "requestor": "Jane Smith",
+    "reportingSupervisor": "John Davis",
+    "resourceTeamHandler": "Mary Johnson",
     "skillsRequired": ["Java", "Spring Boot", "Microservices", "Docker", "Kubernetes"],
     "budgetRange": {
       "min": 80,
       "max": 100
     },
-    "status": "open",
-    "createdDate": "2024-02-20",
+    "status": "in_progress",
+    "createdDate": "2024-01-15",
+    "lastUpdated": "2024-01-22",
     "urgency": "high",
-    "description": "Need experienced Java developer for core banking system modernization project."
+    "description": "Need experienced Java developer for core banking system modernization project.",
+    "positions": {
+      "total": 3,
+      "filled": 1
+    },
+    "workArrangement": "Hybrid",
+    "contractDuration": "12 months",
+    "project": "Core Banking System",
+    "costCenter": "IT-2024-CB",
+    "approvers": {
+      "budget": {
+        "name": "Tom Wilson",
+        "status": "approved",
+        "date": "2024-01-16"
+      },
+      "departmentHead": {
+        "name": "Lisa Chen",
+        "status": "pending",
+        "date": null
+      }
+    },
+    "documents": [
+      {
+        "name": "TOR_Senior_Developer_v2.pdf",
+        "size": "250KB"
+      },
+      {
+        "name": "Budget_Approval_Email.msg",
+        "size": "45KB"
+      },
+      {
+        "name": "Project_Requirements.docx",
+        "size": "180KB"
+      }
+    ],
+    "requirements": {
+      "keySkills": ["Java 8+ (5 years)", "Spring Boot Framework", "Microservices Architecture", "Banking domain experience"],
+      "education": "Bachelor's in Computer Science",
+      "experience": "Minimum 5 years"
+    },
+    "timeline": [
+      {
+        "milestone": "Requisition Created",
+        "date": "2024-01-15",
+        "status": "completed"
+      },
+      {
+        "milestone": "Validated by Resource Team",
+        "date": "2024-01-16",
+        "status": "completed"
+      },
+      {
+        "milestone": "Posted to Agencies",
+        "date": "2024-01-17",
+        "status": "completed"
+      },
+      {
+        "milestone": "CV Submission Deadline",
+        "date": "2024-01-24",
+        "status": "current"
+      },
+      {
+        "milestone": "Target Start Date",
+        "date": "2024-02-01",
+        "status": "pending"
+      },
+      {
+        "milestone": "Contract End Date",
+        "date": "2025-01-31",
+        "status": "pending"
+      }
+    ],
+    "agencyStats": {
+      "invited": 5,
+      "responded": 3,
+      "totalCVs": 12
+    },
+    "agencySubmissions": [
+      {
+        "agencyId": 1,
+        "agencyName": "TechStaff Solutions",
+        "invitedDate": "2024-01-17",
+        "status": "submitted",
+        "submissions": [
+          {
+            "candidateId": 1,
+            "candidateName": "Ahmed Hassan",
+            "hourlyRate": 65,
+            "status": "selected",
+            "currentCompany": "Tech Corp",
+            "availability": "Immediate",
+            "experience": "7 years",
+            "statusTimeline": [
+              {
+                "status": "CV Submitted",
+                "date": "2024-01-19",
+                "time": "14:30"
+              },
+              {
+                "status": "Selected",
+                "date": "2024-01-22",
+                "time": "16:00"
+              }
+            ]
+          },
+          {
+            "candidateId": 2,
+            "candidateName": "Sarah Chen",
+            "hourlyRate": 70,
+            "status": "shortlisted",
+            "currentCompany": "Banking Solutions Ltd",
+            "availability": "2 weeks",
+            "experience": "6 years"
+          }
+        ]
+      },
+      {
+        "agencyId": 2,
+        "agencyName": "Global Recruiters",
+        "invitedDate": "2024-01-17",
+        "status": "submitted",
+        "submissions": [
+          {
+            "candidateId": 3,
+            "candidateName": "Priya Sharma",
+            "hourlyRate": 62,
+            "status": "shortlisted",
+            "currentCompany": "FinTech Solutions",
+            "availability": "Immediate",
+            "experience": "5 years"
+          },
+          {
+            "candidateId": 4,
+            "candidateName": "John Miller",
+            "hourlyRate": 58,
+            "status": "interview_scheduled",
+            "currentCompany": "Enterprise Systems",
+            "availability": "1 week",
+            "experience": "5 years"
+          }
+        ]
+      },
+      {
+        "agencyId": 3,
+        "agencyName": "IT Professionals",
+        "invitedDate": "2024-01-17",
+        "status": "submitted",
+        "submissions": [
+          {
+            "candidateId": 5,
+            "candidateName": "Robert Chen",
+            "hourlyRate": 64,
+            "status": "interview_scheduled",
+            "currentCompany": "Tech Innovations",
+            "availability": "Immediate",
+            "experience": "6 years"
+          }
+        ]
+      },
+      {
+        "agencyId": 4,
+        "agencyName": "Staff Masters",
+        "invitedDate": "2024-01-17",
+        "status": "pending",
+        "submissions": []
+      },
+      {
+        "agencyId": 5,
+        "agencyName": "Tech Talents",
+        "invitedDate": "2024-01-17",
+        "status": "pending",
+        "submissions": []
+      }
+    ],
+    "contractorAssignments": [
+      {
+        "position": 1,
+        "contractorName": "Ahmed Hassan",
+        "agencyName": "TechStaff Solutions",
+        "startDate": "2024-02-01",
+        "hourlyRate": 65,
+        "monthlyRate": 11440,
+        "status": "active"
+      }
+    ],
+    "budget": {
+      "monthlyEstimate": 33800,
+      "totalAllocated": 405600,
+      "utilized": 0,
+      "estimated": 405600
+    },
+    "submissionStats": {
+      "averageRate": "$63",
+      "avgTimeToSubmit": "2.3 days",
+      "avgCVsPerAgency": 4,
+      "qualificationMatch": 67,
+      "responseRate": 60,
+      "rateRanges": [
+        { "range": "$55-60/hr", "count": 2 },
+        { "range": "$61-65/hr", "count": 3 },
+        { "range": "$66-70/hr", "count": 1 },
+        { "range": "$71-75/hr", "count": 0 }
+      ]
+    },
+    "activityLog": [
+      {
+        "date": "22 Jan",
+        "time": "10:30",
+        "description": "Interview scheduled with Ahmed Hassan"
+      },
+      {
+        "date": "21 Jan",
+        "time": "14:15",
+        "description": "3 new CVs received from TechStaff Solutions"
+      },
+      {
+        "date": "20 Jan",
+        "time": "11:30",
+        "description": "Message to all agencies: 'Please note updated requirement for banking experience'"
+      },
+      {
+        "date": "19 Jan",
+        "time": "09:00",
+        "description": "Reminder sent to non-responding agencies"
+      },
+      {
+        "date": "17 Jan",
+        "time": "10:00",
+        "description": "Initial invitation sent to 5 agencies"
+      },
+      {
+        "date": "15 Jan",
+        "time": "09:30",
+        "description": "Requisition created by Jane Smith"
+      }
+    ],
+    "compliance": [
+      {
+        "requirement": "Budget Approved",
+        "status": "completed"
+      },
+      {
+        "requirement": "TOR Attached",
+        "status": "completed"
+      },
+      {
+        "requirement": "Department Head Approval",
+        "status": "pending"
+      },
+      {
+        "requirement": "HR Compliance Check",
+        "status": "pending"
+      },
+      {
+        "requirement": "Diversity Guidelines Met",
+        "status": "completed"
+      }
+    ]
   },
   {
     "Id": 2,
     "title": "Risk Analyst",
+    "category": "Risk Management",
     "department": "Risk Management",
     "requester": "Michael Chen",
+    "requestor": "Michael Chen",
+    "reportingSupervisor": "Robert Smith",
+    "resourceTeamHandler": "Jennifer Wilson",
     "skillsRequired": ["Risk Analysis", "SAS", "Python", "Statistics"],
     "budgetRange": {
       "min": 70,
@@ -26,14 +292,145 @@
     },
     "status": "in_progress",
     "createdDate": "2024-02-18",
+    "lastUpdated": "2024-02-22",
     "urgency": "medium",
-    "description": "Risk analyst needed for credit risk modeling and stress testing initiatives."
+    "description": "Risk analyst needed for credit risk modeling and stress testing initiatives.",
+    "positions": {
+      "total": 2,
+      "filled": 0
+    },
+    "workArrangement": "Remote",
+    "contractDuration": "6 months",
+    "project": "Credit Risk Assessment",
+    "costCenter": "RISK-2024-CRA",
+    "approvers": {
+      "budget": {
+        "name": "David Brown",
+        "status": "approved",
+        "date": "2024-02-19"
+      },
+      "departmentHead": {
+        "name": "Sandra Davis",
+        "status": "approved",
+        "date": "2024-02-19"
+      }
+    },
+    "documents": [],
+    "requirements": {
+      "keySkills": ["Risk Analysis", "SAS Programming", "Python", "Statistical Modeling"],
+      "education": "Master's in Finance or Statistics",
+      "experience": "3+ years in risk management"
+    },
+    "timeline": [
+      {
+        "milestone": "Requisition Created",
+        "date": "2024-02-18",
+        "status": "completed"
+      },
+      {
+        "milestone": "Approval Complete",
+        "date": "2024-02-19",
+        "status": "completed"
+      },
+      {
+        "milestone": "Posted to Agencies",
+        "date": "2024-02-20",
+        "status": "current"
+      },
+      {
+        "milestone": "Target Start Date",
+        "date": "2024-03-01",
+        "status": "pending"
+      }
+    ],
+    "agencyStats": {
+      "invited": 3,
+      "responded": 2,
+      "totalCVs": 6
+    },
+    "agencySubmissions": [
+      {
+        "agencyId": 2,
+        "agencyName": "Financial Staffing Pro",
+        "invitedDate": "2024-02-20",
+        "status": "submitted",
+        "submissions": [
+          {
+            "candidateId": 6,
+            "candidateName": "Maria Garcia",
+            "hourlyRate": 75,
+            "status": "under_review",
+            "currentCompany": "Risk Analytics Corp",
+            "availability": "2 weeks",
+            "experience": "4 years"
+          }
+        ]
+      }
+    ],
+    "contractorAssignments": [],
+    "budget": {
+      "monthlyEstimate": 26000,
+      "totalAllocated": 156000,
+      "utilized": 0,
+      "estimated": 156000
+    },
+    "submissionStats": {
+      "averageRate": "$73",
+      "avgTimeToSubmit": "1.8 days",
+      "avgCVsPerAgency": 3,
+      "qualificationMatch": 83,
+      "responseRate": 67,
+      "rateRanges": [
+        { "range": "$70-75/hr", "count": 4 },
+        { "range": "$76-80/hr", "count": 2 }
+      ]
+    },
+    "activityLog": [
+      {
+        "date": "22 Feb",
+        "time": "15:20",
+        "description": "2 new CVs received from Financial Staffing Pro"
+      },
+      {
+        "date": "20 Feb",
+        "time": "14:00",
+        "description": "Posted to specialized risk management agencies"
+      },
+      {
+        "date": "19 Feb",
+        "time": "11:15",
+        "description": "All approvals completed"
+      },
+      {
+        "date": "18 Feb",
+        "time": "16:30",
+        "description": "Requisition created by Michael Chen"
+      }
+    ],
+    "compliance": [
+      {
+        "requirement": "Budget Approved",
+        "status": "completed"
+      },
+      {
+        "requirement": "Department Head Approval",
+        "status": "completed"
+      },
+      {
+        "requirement": "Risk Assessment Complete",
+        "status": "completed"
+      }
+    ]
   },
   {
     "Id": 3,
     "title": "UI/UX Designer",
+    "category": "Design",
     "department": "Digital Banking",
     "requester": "Lisa Anderson",
+    "requestor": "Lisa Anderson",
+    "reportingSupervisor": "Mark Johnson",
+    "resourceTeamHandler": "Sarah Kim",
     "skillsRequired": ["Figma", "Adobe Creative Suite", "User Research", "Prototyping"],
     "budgetRange": {
       "min": 65,
@@ -41,29 +438,279 @@
     },
     "status": "filled",
     "createdDate": "2024-02-15",
+    "lastUpdated": "2024-02-25",
     "urgency": "low",
-    "description": "UX designer for mobile banking application redesign project."
+    "description": "UX designer for mobile banking application redesign project.",
+    "positions": {
+      "total": 1,
+      "filled": 1
+    },
+    "workArrangement": "Hybrid",
+    "contractDuration": "9 months",
+    "project": "Mobile Banking Redesign",
+    "costCenter": "DIGI-2024-MBR",
+    "approvers": {
+      "budget": {
+        "name": "Jennifer Lee",
+        "status": "approved",
+        "date": "2024-02-16"
+      },
+      "departmentHead": {
+        "name": "Alex Chen",
+        "status": "approved",
+        "date": "2024-02-16"
+      }
+    },
+    "documents": [
+      {
+        "name": "Design_Brief_v3.pdf",
+        "size": "180KB"
+      }
+    ],
+    "requirements": {
+      "keySkills": ["Figma", "Adobe Creative Suite", "User Research", "Prototyping", "Mobile Design"],
+      "education": "Bachelor's in Design or related field",
+      "experience": "3+ years in UX/UI design"
+    },
+    "timeline": [
+      {
+        "milestone": "Requisition Created",
+        "date": "2024-02-15",
+        "status": "completed"
+      },
+      {
+        "milestone": "Contractor Started",
+        "date": "2024-02-26",
+        "status": "completed"
+      },
+      {
+        "milestone": "Project Completion",
+        "date": "2024-11-26",
+        "status": "pending"
+      }
+    ],
+    "agencyStats": {
+      "invited": 4,
+      "responded": 4,
+      "totalCVs": 8
+    },
+    "agencySubmissions": [
+      {
+        "agencyId": 3,
+        "agencyName": "Creative Minds Agency",
+        "invitedDate": "2024-02-16",
+        "status": "submitted",
+        "submissions": [
+          {
+            "candidateId": 7,
+            "candidateName": "Emma Wilson",
+            "hourlyRate": 72,
+            "status": "selected",
+            "currentCompany": "Design Studio Pro",
+            "availability": "Immediate",
+            "experience": "5 years"
+          }
+        ]
+      }
+    ],
+    "contractorAssignments": [
+      {
+        "position": 1,
+        "contractorName": "Emma Wilson",
+        "agencyName": "Creative Minds Agency",
+        "startDate": "2024-02-26",
+        "hourlyRate": 72,
+        "monthlyRate": 12672,
+        "status": "active"
+      }
+    ],
+    "budget": {
+      "monthlyEstimate": 12672,
+      "totalAllocated": 114048,
+      "utilized": 12672,
+      "estimated": 114048
+    },
+    "submissionStats": {
+      "averageRate": "$69",
+      "avgTimeToSubmit": "1.5 days",
+      "avgCVsPerAgency": 2,
+      "qualificationMatch": 88,
+      "responseRate": 100,
+      "rateRanges": [
+        { "range": "$65-70/hr", "count": 5 },
+        { "range": "$71-75/hr", "count": 3 }
+      ]
+    },
+    "activityLog": [
+      {
+        "date": "26 Feb",
+        "time": "09:00",
+        "description": "Emma Wilson started contract"
+      },
+      {
+        "date": "23 Feb",
+        "time": "14:30",
+        "description": "Contract signed with Creative Minds Agency"
+      },
+      {
+        "date": "20 Feb",
+        "time": "10:15",
+        "description": "Final candidate selection completed"
+      },
+      {
+        "date": "17 Feb",
+        "time": "16:45",
+        "description": "Initial CV screening completed"
+      },
+      {
+        "date": "15 Feb",
+        "time": "11:20",
+        "description": "Requisition created by Lisa Anderson"
+      }
+    ],
+    "compliance": [
+      {
+        "requirement": "Budget Approved",
+        "status": "completed"
+      },
+      {
+        "requirement": "Contract Signed",
+        "status": "completed"
+      },
+      {
+        "requirement": "Background Check",
+        "status": "completed"
+      }
+    ]
   },
   {
     "Id": 4,
     "title": "Data Scientist",
+    "category": "Analytics",
     "department": "Analytics",
     "requester": "David Rodriguez",
+    "requestor": "David Rodriguez",
+    "reportingSupervisor": "Linda Wang",
+    "resourceTeamHandler": "Tom Harris",
     "skillsRequired": ["Python", "Machine Learning", "SQL", "Tableau", "R"],
     "budgetRange": {
       "min": 90,
       "max": 110
     },
-    "status": "open",
+    "status": "pending_approval",
     "createdDate": "2024-02-22",
+    "lastUpdated": "2024-02-23",
     "urgency": "high",
-    "description": "Data scientist for customer analytics and predictive modeling initiatives."
+    "description": "Data scientist for customer analytics and predictive modeling initiatives.",
+    "positions": {
+      "total": 2,
+      "filled": 0
+    },
+    "workArrangement": "Remote",
+    "contractDuration": "12 months",
+    "project": "Customer Analytics Platform",
+    "costCenter": "ANALYTICS-2024-CAP",
+    "approvers": {
+      "budget": {
+        "name": "Steve Johnson",
+        "status": "pending",
+        "date": null
+      },
+      "departmentHead": {
+        "name": "Rachel Brown",
+        "status": "pending",
+        "date": null
+      }
+    },
+    "documents": [
+      {
+        "name": "Analytics_Strategy.pdf",
+        "size": "320KB"
+      },
+      {
+        "name": "ML_Requirements.docx",
+        "size": "145KB"
+      }
+    ],
+    "requirements": {
+      "keySkills": ["Python", "Machine Learning", "SQL", "Tableau", "Statistical Analysis"],
+      "education": "Master's in Data Science or Statistics",
+      "experience": "4+ years in data science"
+    },
+    "timeline": [
+      {
+        "milestone": "Requisition Created",
+        "date": "2024-02-22",
+        "status": "completed"
+      },
+      {
+        "milestone": "Pending Approvals",
+        "date": "2024-02-25",
+        "status": "current"
+      },
+      {
+        "milestone": "Target Start Date",
+        "date": "2024-03-15",
+        "status": "pending"
+      }
+    ],
+    "agencyStats": {
+      "invited": 0,
+      "responded": 0,
+      "totalCVs": 0
+    },
+    "agencySubmissions": [],
+    "contractorAssignments": [],
+    "budget": {
+      "monthlyEstimate": 34880,
+      "totalAllocated": 418560,
+      "utilized": 0,
+      "estimated": 418560
+    },
+    "submissionStats": {
+      "averageRate": "$0",
+      "avgTimeToSubmit": "N/A",
+      "avgCVsPerAgency": 0,
+      "qualificationMatch": 0,
+      "responseRate": 0,
+      "rateRanges": []
+    },
+    "activityLog": [
+      {
+        "date": "23 Feb",
+        "time": "10:15",
+        "description": "Additional documentation uploaded"
+      },
+      {
+        "date": "22 Feb",
+        "time": "15:30",
+        "description": "Requisition created by David Rodriguez"
+      }
+    ],
+    "compliance": [
+      {
+        "requirement": "Budget Approval",
+        "status": "pending"
+      },
+      {
+        "requirement": "Department Head Approval",
+        "status": "pending"
+      },
+      {
+        "requirement": "Technical Review",
+        "status": "pending"
+      }
+    ]
   },
   {
     "Id": 5,
     "title": "Project Manager",
+    "category": "Operations",
     "department": "Operations",
     "requester": "Kevin Thompson",
+    "requestor": "Kevin Thompson",
+    "reportingSupervisor": "Nancy Lee",
+    "resourceTeamHandler": "Mike Davis",
     "skillsRequired": ["PMP", "Agile", "Scrum", "JIRA", "MS Project"],
     "budgetRange": {
       "min": 75,
@@ -71,22 +718,212 @@
     },
     "status": "cancelled",
     "createdDate": "2024-02-10",
+    "lastUpdated": "2024-02-20",
     "urgency": "medium",
-    "description": "Project manager for digital transformation initiative."
+    "description": "Project manager for digital transformation initiative.",
+    "positions": {
+      "total": 1,
+      "filled": 0
+    },
+    "workArrangement": "On-site",
+    "contractDuration": "8 months",
+    "project": "Digital Transformation",
+    "costCenter": "OPS-2024-DT",
+    "approvers": {
+      "budget": {
+        "name": "Patricia Wilson",
+        "status": "approved",
+        "date": "2024-02-11"
+      },
+      "departmentHead": {
+        "name": "Robert Green",
+        "status": "cancelled",
+        "date": "2024-02-20"
+      }
+    },
+    "documents": [],
+    "requirements": {
+      "keySkills": ["PMP Certification", "Agile Methodology", "Scrum Master", "JIRA", "MS Project"],
+      "education": "Bachelor's in Business or related field",
+      "experience": "5+ years in project management"
+    },
+    "timeline": [
+      {
+        "milestone": "Requisition Created",
+        "date": "2024-02-10",
+        "status": "completed"
+      },
+      {
+        "milestone": "Requisition Cancelled",
+        "date": "2024-02-20",
+        "status": "completed"
+      }
+    ],
+    "agencyStats": {
+      "invited": 2,
+      "responded": 1,
+      "totalCVs": 3
+    },
+    "agencySubmissions": [],
+    "contractorAssignments": [],
+    "budget": {
+      "monthlyEstimate": 14560,
+      "totalAllocated": 116480,
+      "utilized": 0,
+      "estimated": 116480
+    },
+    "submissionStats": {
+      "averageRate": "$78",
+      "avgTimeToSubmit": "2.0 days",
+      "avgCVsPerAgency": 1.5,
+      "qualificationMatch": 67,
+      "responseRate": 50,
+      "rateRanges": [
+        { "range": "$75-80/hr", "count": 3 }
+      ]
+    },
+    "activityLog": [
+      {
+        "date": "20 Feb",
+        "time": "14:00",
+        "description": "Requisition cancelled due to budget reallocation"
+      },
+      {
+        "date": "15 Feb",
+        "time": "11:30",
+        "description": "Initial CVs received"
+      },
+      {
+        "date": "12 Feb",
+        "time": "09:45",
+        "description": "Posted to agency partners"
+      },
+      {
+        "date": "10 Feb",
+        "time": "16:20",
+        "description": "Requisition created by Kevin Thompson"
+      }
+    ],
+    "compliance": [
+      {
+        "requirement": "Cancellation Approved",
+        "status": "completed"
+      }
+    ]
   },
   {
     "Id": 6,
     "title": "Cybersecurity Analyst",
+    "category": "Information Security",
     "department": "Information Security",
     "requester": "Jennifer Williams",
+    "requestor": "Jennifer Williams",
+    "reportingSupervisor": "Paul Anderson",
+    "resourceTeamHandler": "Chris Martinez",
     "skillsRequired": ["CISSP", "Penetration Testing", "Security Frameworks", "Incident Response"],
     "budgetRange": {
       "min": 85,
       "max": 105
     },
-    "status": "open",
+    "status": "draft",
     "createdDate": "2024-02-25",
+    "lastUpdated": "2024-02-25",
     "urgency": "high",
-    "description": "Cybersecurity analyst for security assessment and incident response."
+    "description": "Cybersecurity analyst for security assessment and incident response.",
+    "positions": {
+      "total": 1,
+      "filled": 0
+    },
+    "workArrangement": "Hybrid",
+    "contractDuration": "6 months",
+    "project": "Security Enhancement Program",
+    "costCenter": "SEC-2024-SEP",
+    "approvers": {
+      "budget": {
+        "name": "Michael Clark",
+        "status": "pending",
+        "date": null
+      },
+      "departmentHead": {
+        "name": "Sarah Thompson",
+        "status": "pending",
+        "date": null
+      }
+    },
+    "documents": [
+      {
+        "name": "Security_Assessment_Plan.pdf",
+        "size": "275KB"
+      }
+    ],
+    "requirements": {
+      "keySkills": ["CISSP Certification", "Penetration Testing", "Security Frameworks", "Incident Response"],
+      "education": "Bachelor's in Cybersecurity or Computer Science",
+      "experience": "4+ years in cybersecurity"
+    },
+    "timeline": [
+      {
+        "milestone": "Requisition Created",
+        "date": "2024-02-25",
+        "status": "completed"
+      },
+      {
+        "milestone": "Approval Process",
+        "date": "2024-02-28",
+        "status": "pending"
+      },
+      {
+        "milestone": "Target Start Date",
+        "date": "2024-03-20",
+        "status": "pending"
+      }
+    ],
+    "agencyStats": {
+      "invited": 0,
+      "responded": 0,
+      "totalCVs": 0
+    },
+    "agencySubmissions": [],
+    "contractorAssignments": [],
+    "budget": {
+      "monthlyEstimate": 16380,
+      "totalAllocated": 98280,
+      "utilized": 0,
+      "estimated": 98280
+    },
+    "submissionStats": {
+      "averageRate": "$0",
+      "avgTimeToSubmit": "N/A",
+      "avgCVsPerAgency": 0,
+      "qualificationMatch": 0,
+      "responseRate": 0,
+      "rateRanges": []
+    },
+    "activityLog": [
+      {
+        "date": "25 Feb",
+        "time": "13:45",
+        "description": "Initial security assessment documentation uploaded"
+      },
+      {
+        "date": "25 Feb",
+        "time": "10:30",
+        "description": "Draft requisition created by Jennifer Williams"
+      }
+    ],
+    "compliance": [
+      {
+        "requirement": "Security Clearance Required",
+        "status": "pending"
+      },
+      {
+        "requirement": "Budget Approval",
+        "status": "pending"
+      },
+      {
+        "requirement": "Background Check Protocol",
+        "status": "pending"
+      }
+    ]
   }
 ]
