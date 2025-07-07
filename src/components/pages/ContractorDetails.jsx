@@ -397,9 +397,9 @@ const menuItems = [
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
+<CardContent className="space-y-6">
               {/* Rate and Billing Information */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Current Rate
@@ -415,7 +415,7 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Billing Type
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-semibold text-gray-900">
                       {contractor.billingType}
                     </span>
@@ -425,7 +425,7 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Standard Hours
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-semibold text-gray-900">
                       {contractor.standardHours} hrs/week
                     </span>
@@ -435,21 +435,22 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Overtime Rate
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-semibold text-gray-900">
                       {formatCurrency(contractor.overtimeRate)}
                     </span>
                     <span className="text-sm text-gray-600">/hour (1.5x)</span>
                   </div>
                 </div>
+              </div>
 
               {/* Budget and Cost Information */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Budget Source
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
                       {contractor.budgetSource}
                     </span>
@@ -459,7 +460,7 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Cost Center
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
                       {contractor.costCenter}
                     </span>
@@ -469,7 +470,7 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Monthly Cost Estimate
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-bold text-accent">
                       {formatCurrency(contractor.monthlyCost)}
                     </span>
@@ -483,7 +484,7 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Payment Terms
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
                       {contractor.paymentTerms}
                     </span>
@@ -493,7 +494,7 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Invoice Submission
                   </label>
-<div className="p-3 bg-gray-50 rounded-lg">
+                  <div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
                       {contractor.invoiceSubmission}
                     </span>
@@ -504,7 +505,7 @@ const menuItems = [
                     Last Invoice
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg">
-<div className="flex items-center">
+                    <div className="flex items-center">
                       <span className="text-gray-900 font-medium mr-2">
                         {contractor.lastInvoice}
                       </span>
@@ -837,13 +838,13 @@ name="Star"
                   <h3 className="text-lg font-medium text-gray-900 mb-4">IT Equipment</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-4 border rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
+<div className="flex items-center justify-between mb-2">
                         <div className="flex items-center">
                           <ApperIcon name="Laptop" size={20} className="text-gray-600 mr-2" />
                           <span className="font-medium text-gray-900">Laptop</span>
                         </div>
                         <StatusBadge status="active" />
-</div>
+                      </div>
                       <p className="text-sm text-gray-600">
                         {contractor.equipment?.laptop?.model}
                       </p>
@@ -857,15 +858,14 @@ name="Star"
                         Issued: {contractor.equipment?.laptop?.issuedDate}
                       </p>
                     </div>
-
                     <div className="p-4 border rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
+<div className="flex items-center justify-between mb-2">
                         <div className="flex items-center">
                           <ApperIcon name="Monitor" size={20} className="text-gray-600 mr-2" />
                           <span className="font-medium text-gray-900">Monitor</span>
                         </div>
                         <StatusBadge status="active" />
-</div>
+                      </div>
                       <p className="text-sm text-gray-600">
                         {contractor.equipment?.monitor?.model}
                       </p>
@@ -875,13 +875,13 @@ name="Star"
                     </div>
 
                     <div className="p-4 border rounded-lg">
-                      <div className="flex items-center justify-between mb-2">
+<div className="flex items-center justify-between mb-2">
                         <div className="flex items-center">
                           <ApperIcon name="Keyboard" size={20} className="text-gray-600 mr-2" />
                           <span className="font-medium text-gray-900">Keyboard & Mouse</span>
                         </div>
                         <StatusBadge status="active" />
-</div>
+                      </div>
                       <p className="text-sm text-gray-600">
                         {contractor.equipment?.keyboard}
                       </p>
@@ -889,12 +889,12 @@ name="Star"
 
                     <div className="p-4 border rounded-lg">
                       <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center">
+<div className="flex items-center">
                           <ApperIcon name="Headphones" size={20} className="text-gray-600 mr-2" />
                           <span className="font-medium text-gray-900">Headset</span>
                         </div>
                         <StatusBadge status="active" />
-</div>
+                      </div>
                       <p className="text-sm text-gray-600">
                         {contractor.equipment?.headset}
                       </p>
@@ -912,11 +912,11 @@ name="Star"
                           <ApperIcon name="Mail" size={20} className="text-green-600 mr-2" />
                           <span className="font-medium text-gray-900">Email Account</span>
                         </div>
-                        <div className="flex items-center">
+<div className="flex items-center">
                           <ApperIcon name="Check" size={16} className="text-green-600 mr-1" />
                           <span className="text-xs text-green-600">Active</span>
                         </div>
-</div>
+                      </div>
                       <p className="text-sm text-gray-600">
                         {contractor.systemAccess?.email}
                       </p>
@@ -957,10 +957,10 @@ name="Star"
                           <span className="font-medium text-gray-900">Building Access</span>
                         </div>
                         <div className="flex items-center">
-                          <ApperIcon name="Check" size={16} className="text-green-600 mr-1" />
+<ApperIcon name="Check" size={16} className="text-green-600 mr-1" />
                           <span className="text-xs text-green-600">Floors 1-15</span>
                         </div>
-</div>
+                      </div>
                       <p className="text-sm text-gray-600">
                         Parking: {contractor.systemAccess?.parking}
                       </p>
