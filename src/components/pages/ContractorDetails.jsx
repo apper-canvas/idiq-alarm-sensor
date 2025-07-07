@@ -12,7 +12,6 @@ import StatusBadge from "@/components/molecules/StatusBadge";
 import { overtimeService } from "@/services/api/overtimeService";
 import { contractorService } from "@/services/api/contractorService";
 import { timeOffService } from "@/services/api/timeOffService";
-
 const ContractorDetails = () => {
   const { id } = useParams();
 const navigate = useNavigate();
@@ -409,7 +408,7 @@ const menuItems = [
                       {formatCurrency(contractor.hourlyRate)}
                     </span>
                     <span className="text-sm text-gray-600">/hour</span>
-                </div>
+                  </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Billing Type
@@ -439,8 +438,8 @@ const menuItems = [
                       {formatCurrency(contractor.overtimeRate)}
                     </span>
                     <span className="text-sm text-gray-600">/hour (1.5x)</span>
+                  </div>
                 </div>
-              </div>
 
               {/* Budget and Cost Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -537,7 +536,7 @@ const menuItems = [
 <div>
                       <h3 className="font-semibold text-gray-900 text-lg">
                         {contractor.currentPosition?.title}
-</h3>
+                      </h3>
                       <p className="text-sm text-gray-600">
                         {contractor.currentPosition?.department || contractor.department} | {contractor.currentPosition?.duration}
                       </p>
@@ -583,7 +582,7 @@ const menuItems = [
 <div>
                         <h4 className="font-medium text-gray-900">
                           {contractor.previousPositions?.[0]?.title}
-</h4>
+                        </h4>
                         <p className="text-sm text-gray-600">
                           {contractor.previousPositions?.[0]?.department} | {contractor.previousPositions?.[0]?.duration}
                         </p>
@@ -628,7 +627,7 @@ name="Star"
 <div>
                         <h4 className="font-medium text-gray-900">
                           {contractor.previousPositions?.[1]?.title}
-</h4>
+                        </h4>
                         <p className="text-sm text-gray-600">
                           {contractor.previousPositions?.[1]?.department} | {contractor.previousPositions?.[1]?.duration}
                         </p>
@@ -845,13 +844,13 @@ name="Star"
 </div>
                       <p className="text-sm text-gray-600">
                         {contractor.equipment?.laptop?.model}
-</p>
+                      </p>
                       <p className="text-xs text-gray-500 mt-1">
                         Asset: {contractor.equipment?.laptop?.assetId}
-</p>
+                      </p>
                       <p className="text-xs text-gray-500">
                         Serial: {contractor.equipment?.laptop?.serial}
-</p>
+                      </p>
                       <p className="text-xs text-gray-500">
                         Issued: {contractor.equipment?.laptop?.issuedDate}
                       </p>
@@ -867,7 +866,7 @@ name="Star"
 </div>
                       <p className="text-sm text-gray-600">
                         {contractor.equipment?.monitor?.model}
-</p>
+                      </p>
                       <p className="text-xs text-gray-500 mt-1">
                         Asset: {contractor.equipment?.monitor?.assetId}
                       </p>
