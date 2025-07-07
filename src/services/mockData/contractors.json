@@ -16,9 +16,8 @@
     "photo": null,
     "workplanId": 1,
     "workplanName": "Technology Development"
-  },
+},
   {
-{
     "Id": 2,
     "name": "Emily Davis",
     "email": "emily.davis@staffing.com",
@@ -35,9 +34,8 @@
     "photo": null,
     "workplanId": 2,
     "workplanName": "Risk Management Initiative"
-  },
+},
   {
-{
     "Id": 3,
     "name": "Robert Wilson",
     "email": "robert.wilson@consulting.com",
@@ -54,9 +52,8 @@
     "photo": null,
     "workplanId": 3,
     "workplanName": "Operations Optimization"
-  },
+},
   {
-{
     "Id": 4,
     "name": "Jennifer Brown",
     "email": "jennifer.brown@agency.com",
@@ -73,9 +70,8 @@
     "photo": null,
     "workplanId": null,
     "workplanName": ""
-  },
+},
   {
-{
     "Id": 5,
     "name": "Michael Johnson",
     "email": "michael.johnson@staffing.com",
@@ -92,9 +88,8 @@
     "photo": null,
     "workplanId": null,
     "workplanName": ""
-  },
+},
   {
-{
     "Id": 6,
     "name": "Amanda Martinez",
     "email": "amanda.martinez@consulting.com",
