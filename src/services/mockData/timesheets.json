@@ -23,9 +23,8 @@
     "notes": "Regular work week, all tasks completed on schedule.",
     "workplanId": 1,
     "workplanName": "Technology Development"
-  },
+},
   {
-{
     "Id": 2,
     "contractorId": 2,
     "contractorName": "Emily Davis",
@@ -50,9 +49,8 @@
     "notes": "Extra hours for quarterly risk report deadline.",
     "workplanId": 2,
     "workplanName": "Risk Management Initiative"
-  },
+},
   {
-{
     "Id": 3,
     "contractorId": 3,
     "contractorName": "Robert Wilson",
@@ -77,9 +75,8 @@
     "notes": "Left early Friday for personal appointment.",
     "workplanId": 3,
     "workplanName": "Operations Optimization"
-  },
+},
   {
-{
     "Id": 4,
     "contractorId": 4,
     "contractorName": "Jennifer Brown",
@@ -104,9 +101,8 @@
     "notes": "Hours not aligned with project deliverables. Please revise and resubmit.",
     "workplanId": null,
     "workplanName": ""
-  },
+},
   {
-{
     "Id": 5,
     "contractorId": 1,
     "contractorName": "John Smith",
@@ -131,9 +127,8 @@
     "notes": "Standard work week, good progress on microservices development.",
     "workplanId": 1,
     "workplanName": "Technology Development"
-  },
+},
   {
-{
     "Id": 6,
     "contractorId": 6,
     "contractorName": "Amanda Martinez",
