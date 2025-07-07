@@ -10,8 +10,19 @@ export const requisitionService = {
 
   async getById(id) {
     await delay(200);
-    const requisition = requisitionsData.find(r => r.Id === parseInt(id));
-    if (!requisition) throw new Error('Requisition not found');
+    
+    // Convert ID to integer and validate
+    const numericId = parseInt(id, 10);
+    if (isNaN(numericId) || numericId <= 0) {
+      throw new Error(`Invalid requisition ID: ${id}`);
+    }
+    
+    // Find requisition with proper integer comparison
+    const requisition = requisitionsData.find(r => r.Id === numericId);
+    if (!requisition) {
+      throw new Error(`Requisition with ID ${numericId} not found`);
+    }
+    
     return { ...requisition };
   },
 
