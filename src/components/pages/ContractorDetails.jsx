@@ -372,9 +372,260 @@ const ContractorDetails = () => {
                 </div>
               </div>
             </CardContent>
-          </Card>
+</Card>
         </div>
       </div>
+
+      {/* Financial Information Section */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold text-gray-900">Financial Information</h2>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleAction('View Invoice System', 'info')}
+            >
+              <ApperIcon name="FileText" size={16} className="mr-2" />
+              View Invoices
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Hourly Rate
+              </label>
+              <div className="p-3 bg-gray-50 rounded-lg">
+                <span className="text-2xl font-bold text-gray-900">
+                  {formatCurrency(contractor.hourlyRate)}
+                </span>
+                <span className="text-sm text-gray-600">/hour</span>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Contract Value
+              </label>
+              <div className="p-3 bg-gray-50 rounded-lg">
+                <span className="text-2xl font-bold text-gray-900">
+                  {formatCurrency(contractor.hourlyRate * 40 * 12)}
+                </span>
+                <span className="text-sm text-gray-600">total</span>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Remaining Value
+              </label>
+              <div className="p-3 bg-gray-50 rounded-lg">
+                <span className="text-2xl font-bold text-accent">
+                  {formatCurrency((contractor.hourlyRate * 40 * contractor.daysRemaining) / 7)}
+                </span>
+                <span className="text-sm text-gray-600">approx.</span>
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Payment Status
+              </label>
+              <div className="p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  <span className="text-sm font-medium text-gray-900">Current</span>
+                </div>
+                <span className="text-xs text-gray-600">Last payment: 2 days ago</span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Position History Section */}
+      <Card>
+        <CardHeader>
+          <h2 className="text-xl font-semibold text-gray-900">Position History</h2>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {/* Current Position */}
+            <div className="border-l-4 border-blue-500 pl-4">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <h3 className="font-semibold text-gray-900">
+                    {contractor.workplanName || 'Current Assignment'}
+                  </h3>
+                  <p className="text-sm text-gray-600">{contractor.department}</p>
+                </div>
+                <div className="text-right">
+                  <StatusBadge status={contractor.status} />
+                  <p className="text-sm text-gray-600 mt-1">Current</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+                <div>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    Start Date
+                  </label>
+                  <span className="text-sm text-gray-900">{formatDate(contractor.startDate)}</span>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    End Date
+                  </label>
+                  <span className="text-sm text-gray-900">{formatDate(contractor.endDate)}</span>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    Duration
+                  </label>
+                  <span className="text-sm text-gray-900">
+                    {Math.ceil((new Date(contractor.endDate) - new Date(contractor.startDate)) / (1000 * 60 * 60 * 24))} days
+                  </span>
+                </div>
+              </div>
+              <div className="mt-3">
+                <label className="block text-xs font-medium text-gray-500 mb-1">
+                  Reporting Manager
+                </label>
+                <span className="text-sm text-gray-900">{contractor.manager}</span>
+              </div>
+            </div>
+
+            {/* Previous Positions Placeholder */}
+            <div className="border-l-4 border-gray-300 pl-4 opacity-60">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <h3 className="font-semibold text-gray-600">Previous Assignments</h3>
+                  <p className="text-sm text-gray-500">No previous positions on record</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs text-gray-400">Historical</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Equipment & Access Section */}
+      <Card>
+        <CardHeader>
+          <h2 className="text-xl font-semibold text-gray-900">Equipment & Access</h2>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-6">
+            {/* System Access */}
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">System Access</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Shield" size={20} className="text-blue-600 mr-2" />
+                      <span className="font-medium text-gray-900">Active Directory</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">Domain access granted</p>
+                  <p className="text-xs text-gray-500 mt-1">Last login: 2 hours ago</p>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Mail" size={20} className="text-green-600 mr-2" />
+                      <span className="font-medium text-gray-900">Email System</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">Exchange Online access</p>
+                  <p className="text-xs text-gray-500 mt-1">Account: {contractor.email}</p>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Database" size={20} className="text-purple-600 mr-2" />
+                      <span className="font-medium text-gray-900">Project Database</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">Read/Write permissions</p>
+                  <p className="text-xs text-gray-500 mt-1">Last access: 1 day ago</p>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Cloud" size={20} className="text-orange-600 mr-2" />
+                      <span className="font-medium text-gray-900">AWS Console</span>
+                    </div>
+                    <StatusBadge status="pending" />
+                  </div>
+                  <p className="text-sm text-gray-600">Access request submitted</p>
+                  <p className="text-xs text-gray-500 mt-1">Pending IT approval</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Equipment Assignment */}
+            <div>
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Equipment Assignment</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Laptop" size={20} className="text-gray-600 mr-2" />
+                      <span className="font-medium text-gray-900">Laptop</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">Dell Latitude 5520</p>
+                  <p className="text-xs text-gray-500 mt-1">Asset ID: LAP-2024-0156</p>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Smartphone" size={20} className="text-gray-600 mr-2" />
+                      <span className="font-medium text-gray-900">Mobile Device</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">iPhone 14 Pro</p>
+                  <p className="text-xs text-gray-500 mt-1">Phone: {contractor.phone}</p>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="CreditCard" size={20} className="text-gray-600 mr-2" />
+                      <span className="font-medium text-gray-900">Access Card</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">Building access granted</p>
+                  <p className="text-xs text-gray-500 mt-1">Card ID: AC-{contractor.Id.toString().padStart(4, '0')}</p>
+                </div>
+
+                <div className="p-4 border rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center">
+                      <ApperIcon name="Key" size={20} className="text-gray-600 mr-2" />
+                      <span className="font-medium text-gray-900">VPN Access</span>
+                    </div>
+                    <StatusBadge status="active" />
+                  </div>
+                  <p className="text-sm text-gray-600">Remote access enabled</p>
+                  <p className="text-xs text-gray-500 mt-1">Certificate expires: 90 days</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 };
