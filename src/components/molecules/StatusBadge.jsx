@@ -45,6 +45,25 @@ const StatusBadge = ({ status, type = 'contractor' }) => {
         default:
           return { variant: 'default', label: status || 'Unknown' };
       }
+}
+    
+    if (type === 'ticket') {
+      switch (status?.toLowerCase()) {
+        case 'draft':
+          return { variant: 'default', label: 'Draft' };
+        case 'submitted':
+          return { variant: 'warning', label: 'Submitted' };
+        case 'validated':
+          return { variant: 'info', label: 'Validated' };
+        case 'posted':
+          return { variant: 'info', label: 'Posted' };
+        case 'in_progress':
+          return { variant: 'warning', label: 'In Progress' };
+        case 'closed':
+          return { variant: 'success', label: 'Closed' };
+        default:
+          return { variant: 'default', label: status || 'Unknown' };
+      }
     }
     
     return { variant: 'default', label: status || 'Unknown' };

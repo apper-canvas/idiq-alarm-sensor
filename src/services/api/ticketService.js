@@ -41,6 +41,28 @@ let nextTicketId = Math.max(...ticketsData.map(t => t.Id), 0) + 1;
 let nextPositionId = Math.max(...ticketsData.flatMap(t => t.positions.map(p => p.Id)), 0) + 1;
 let nextAttachmentId = Math.max(...ticketsData.flatMap(t => t.attachments.map(a => a.Id)), 0) + 1;
 
+// Mock agencies for floating requirements
+const mockAgencies = [
+  { Id: 1, name: 'TechStaff Solutions', type: 'technical', active: true },
+  { Id: 2, name: 'Finance Experts Inc', type: 'finance', active: true },
+  { Id: 3, name: 'Operations Pro', type: 'operations', active: true },
+  { Id: 4, name: 'Legal Partners', type: 'legal', active: true }
+];
+
+// Workflow status validation
+const validateStatusTransition = (currentStatus, newStatus) => {
+  const validTransitions = {
+    'draft': ['submitted'],
+    'submitted': ['validated', 'draft'],
+    'validated': ['posted', 'submitted'],
+    'posted': ['in_progress'],
+    'in_progress': ['closed'],
+    'closed': []
+  };
+  
+  return validTransitions[currentStatus]?.includes(newStatus) || false;
+};
+
 export const ticketService = {
   async getAll() {
     await delay(300);
@@ -74,9 +96,22 @@ export const ticketService = {
       ...ticketData,
       Id: nextTicketId++,
       createdDate: new Date().toISOString().split('T')[0],
-      status: 'open',
+      status: 'draft',
       positions,
-      attachments
+      attachments,
+      workflow: {
+        submittedBy: null,
+        submittedDate: null,
+        validatedBy: null,
+        validatedDate: null,
+        postedBy: null,
+        postedDate: null,
+        startedBy: null,
+        startedDate: null,
+        closedBy: null,
+        closedDate: null,
+        floatedAgencies: []
+      }
     };
     
     ticketsData.push(newTicket);
@@ -117,6 +152,160 @@ export const ticketService = {
     
     ticketsData.splice(index, 1);
     return { success: true };
+  },
+
+  // Workflow transition methods
+  async submitTicket(id, submittedBy = 'Current User') {
+    await delay(300);
+    const index = ticketsData.findIndex(t => t.Id === parseInt(id));
+    if (index === -1) throw new Error('Ticket not found');
+    
+    const ticket = ticketsData[index];
+    if (!validateStatusTransition(ticket.status, 'submitted')) {
+      throw new Error('Invalid status transition');
+    }
+    
+    ticketsData[index] = {
+      ...ticket,
+      status: 'submitted',
+      workflow: {
+        ...ticket.workflow,
+        submittedBy,
+        submittedDate: new Date().toISOString().split('T')[0]
+      }
+    };
+    
+    return { ...ticketsData[index] };
+  },
+
+  async validateTicket(id, validatedBy = 'Resource Team') {
+    await delay(350);
+    const index = ticketsData.findIndex(t => t.Id === parseInt(id));
+    if (index === -1) throw new Error('Ticket not found');
+    
+    const ticket = ticketsData[index];
+    if (!validateStatusTransition(ticket.status, 'validated')) {
+      throw new Error('Invalid status transition');
+    }
+    
+    ticketsData[index] = {
+      ...ticket,
+      status: 'validated',
+      workflow: {
+        ...ticket.workflow,
+        validatedBy,
+        validatedDate: new Date().toISOString().split('T')[0]
+      }
+    };
+    
+    return { ...ticketsData[index] };
+  },
+
+  async postTicket(id, postedBy = 'Admin User') {
+    await delay(300);
+    const index = ticketsData.findIndex(t => t.Id === parseInt(id));
+    if (index === -1) throw new Error('Ticket not found');
+    
+    const ticket = ticketsData[index];
+    if (!validateStatusTransition(ticket.status, 'posted')) {
+      throw new Error('Invalid status transition');
+    }
+    
+    ticketsData[index] = {
+      ...ticket,
+      status: 'posted',
+      workflow: {
+        ...ticket.workflow,
+        postedBy,
+        postedDate: new Date().toISOString().split('T')[0]
+      }
+    };
+    
+    return { ...ticketsData[index] };
+  },
+
+  async startTicket(id, startedBy = 'Project Manager') {
+    await delay(300);
+    const index = ticketsData.findIndex(t => t.Id === parseInt(id));
+    if (index === -1) throw new Error('Ticket not found');
+    
+    const ticket = ticketsData[index];
+    if (!validateStatusTransition(ticket.status, 'in_progress')) {
+      throw new Error('Invalid status transition');
+    }
+    
+    ticketsData[index] = {
+      ...ticket,
+      status: 'in_progress',
+      workflow: {
+        ...ticket.workflow,
+        startedBy,
+        startedDate: new Date().toISOString().split('T')[0]
+      }
+    };
+    
+    return { ...ticketsData[index] };
+  },
+
+  async closeTicket(id, closedBy = 'Admin User') {
+    await delay(300);
+    const index = ticketsData.findIndex(t => t.Id === parseInt(id));
+    if (index === -1) throw new Error('Ticket not found');
+    
+    const ticket = ticketsData[index];
+    if (!validateStatusTransition(ticket.status, 'closed')) {
+      throw new Error('Invalid status transition');
+    }
+    
+    ticketsData[index] = {
+      ...ticket,
+      status: 'closed',
+      workflow: {
+        ...ticket.workflow,
+        closedBy,
+        closedDate: new Date().toISOString().split('T')[0]
+      }
+    };
+    
+    return { ...ticketsData[index] };
+  },
+
+  // Agency floating functionality
+  async floatToAgencies(id, agencyIds) {
+    await delay(400);
+    const index = ticketsData.findIndex(t => t.Id === parseInt(id));
+    if (index === -1) throw new Error('Ticket not found');
+    
+    const ticket = ticketsData[index];
+    const selectedAgencies = mockAgencies.filter(agency => 
+      agencyIds.includes(agency.Id) && agency.active
+    );
+    
+    const floatedAgencies = selectedAgencies.map(agency => ({
+      agencyId: agency.Id,
+      agencyName: agency.name,
+      floatedDate: new Date().toISOString().split('T')[0],
+      status: 'sent'
+    }));
+    
+    ticketsData[index] = {
+      ...ticket,
+      workflow: {
+        ...ticket.workflow,
+        floatedAgencies: [...ticket.workflow.floatedAgencies, ...floatedAgencies]
+      }
+    };
+    
+    return { 
+      success: true, 
+      floatedTo: selectedAgencies.map(a => a.name),
+      ticket: { ...ticketsData[index] }
+    };
+  },
+
+  async getAvailableAgencies() {
+    await delay(200);
+    return [...mockAgencies.filter(a => a.active)];
   },
 
   // Dropdown data methods
