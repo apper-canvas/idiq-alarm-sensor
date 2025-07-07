@@ -1,21 +1,81 @@
 [
 {
     "Id": 1,
-    "name": "John Smith",
-    "email": "john.smith@agency.com",
+    "name": "Ahmed Hassan",
+    "email": "ahmed.hassan@adb.org",
     "phone": "+1 (555) 123-4567",
     "agencyId": 1,
-    "department": "Technology",
+    "department": "IT Division",
     "manager": "Sarah Johnson",
-    "startDate": "2024-01-15",
-    "endDate": "2024-04-15",
-    "hourlyRate": 85,
+    "startDate": "2024-02-01",
+    "endDate": "2024-12-31",
+    "hourlyRate": 65,
     "status": "active",
-    "daysRemaining": 45,
-    "skills": ["Java", "Spring Boot", "Microservices"],
+    "daysRemaining": 145,
+    "skills": ["Java", "Spring Boot", "Microservices", "AWS", "Banking Systems"],
     "photo": null,
     "workplanId": 1,
-    "workplanName": "Technology Development"
+    "workplanName": "Core Banking System",
+    "billingType": "Hourly",
+    "standardHours": 40,
+    "overtimeRate": 97.50,
+    "overtimeEligible": true,
+    "budgetSource": "Project ABC123",
+    "costCenter": "IT-2024-CB",
+    "monthlyCost": 11267,
+    "paymentTerms": "NET 30",
+    "invoiceSubmission": "Via Coupa",
+    "lastInvoice": "INV-2024-0234",
+    "lastInvoiceStatus": "Paid",
+    "totalTimeWithADB": "3 years, 11 months",
+    "currentPosition": {
+        "title": "Senior Java Developer",
+        "department": "IT Division",
+        "duration": "01 Feb 2024 - Present",
+        "rate": 65,
+        "project": "Core Banking System"
+    },
+    "previousPositions": [
+        {
+            "title": "Java Developer",
+            "department": "Finance Dept",
+            "duration": "15 Jun 2022 - 31 Dec 2023",
+            "rate": 55,
+            "project": "Financial Reporting System",
+            "rating": 4,
+            "supervisor": "Lisa Chen"
+        },
+        {
+            "title": "Junior Developer",
+            "department": "IT Support",
+            "duration": "01 Mar 2021 - 14 Jun 2022",
+            "rate": 45,
+            "project": "Help Desk System",
+            "rating": 5,
+            "supervisor": "Mike Wilson"
+        }
+    ],
+    "equipment": {
+        "laptop": {
+            "model": "Dell Latitude 5520",
+            "assetId": "IT-LAP-2024-089",
+            "serial": "DL5520XYZ123",
+            "issuedDate": "01 Feb 2024"
+        },
+        "monitor": {
+            "model": "Dell 24\"",
+            "assetId": "IT-MON-2024-178"
+        },
+        "keyboard": "Standard Set",
+        "headset": "Jabra Evolve 40"
+    },
+    "systemAccess": {
+        "email": "ahmed.hassan@adb.org",
+        "networkAccess": "Standard User",
+        "vpnAccess": "Enabled",
+        "buildingAccess": "Floors 1-15",
+        "parking": "Spot B2-45"
+    }
 },
   {
     "Id": 2,
