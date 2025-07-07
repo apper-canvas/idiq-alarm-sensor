@@ -1,26 +1,29 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { Card, CardContent, CardHeader } from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import StatusBadge from '@/components/molecules/StatusBadge';
-import Loading from '@/components/ui/Loading';
-import Error from '@/components/ui/Error';
-import ApperIcon from '@/components/ApperIcon';
-import { contractorService, timeOffService } from '@/services/api/contractorService';
-import { overtimeService } from '@/services/api/overtimeService';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import { Card, CardContent, CardHeader } from "@/components/atoms/Card";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import Contractors from "@/components/pages/Contractors";
+import StatusBadge from "@/components/molecules/StatusBadge";
+import { overtimeService } from "@/services/api/overtimeService";
+import { contractorService } from "@/services/api/contractorService";
+import { timeOffService } from "@/services/api/timeOffService";
 
 const ContractorDetails = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
-const [contractor, setContractor] = useState(null);
+const navigate = useNavigate();
+  const [contractor, setContractor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeSection, setActiveSection] = useState('personal');
   const [timeOffData, setTimeOffData] = useState([]);
-  const [overtimeData, setOvertimeData] = useState([]);
-useEffect(() => {
+const [overtimeData, setOvertimeData] = useState([]);
+  
+  useEffect(() => {
     loadContractor();
     loadTimeOffData();
     loadOvertimeData();
@@ -36,8 +39,8 @@ useEffect(() => {
       setError(err.message);
     } finally {
       setLoading(false);
-    }
-};
+}
+  };
 
   const loadTimeOffData = async () => {
     try {
@@ -74,8 +77,8 @@ useEffect(() => {
       'Request Extension': 'Contract extension request functionality coming soon',
       'View Performance': 'Performance review functionality coming soon',
       'Update Status': 'Status update functionality coming soon',
-      'View Assignment': 'Assignment details functionality coming soon',
-'Submit Timesheet': 'Timesheet submission functionality coming soon',
+'View Assignment': 'Assignment details functionality coming soon',
+      'Submit Timesheet': 'Timesheet submission functionality coming soon',
       'Request Time Off': 'Time off request functionality coming soon',
       'Submit Overtime': 'Overtime submission functionality coming soon',
       'View Schedule': 'Schedule view functionality coming soon',
@@ -112,9 +115,8 @@ useEffect(() => {
   };
 
   if (loading) return <Loading />;
-  if (error) return <Error title="Error Loading Contractor" message={error} onRetry={loadContractor} />;
-if (!contractor) return <Error title="Contractor Not Found" message="The requested contractor could not be found." />;
-
+if (error) return <Error title="Error Loading Contractor" message={error} onRetry={loadContractor} />;
+  if (!contractor) return <Error title="Contractor Not Found" message="The requested contractor could not be found." />;
 const menuItems = [
     { id: 'personal', label: 'Personal Information', icon: 'User' },
     { id: 'financial', label: 'Financial Information', icon: 'DollarSign' },
@@ -218,7 +220,7 @@ const menuItems = [
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Workplan
                       </label>
-                      <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                         <span className="text-gray-900">
                           {contractor.workplanName || 'No workplan assigned'}
                         </span>
@@ -402,20 +404,19 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Current Rate
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-2xl font-bold text-gray-900">
-                      {formatCurrency(contractor.hourlyRate || 65)}
+                      {formatCurrency(contractor.hourlyRate)}
                     </span>
                     <span className="text-sm text-gray-600">/hour</span>
-                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Billing Type
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-semibold text-gray-900">
-                      {contractor.billingType || 'Hourly'}
+                      {contractor.billingType}
                     </span>
                   </div>
                 </div>
@@ -423,9 +424,9 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Standard Hours
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-semibold text-gray-900">
-                      {contractor.standardHours || '40'} hrs/week
+                      {contractor.standardHours} hrs/week
                     </span>
                   </div>
                 </div>
@@ -433,12 +434,11 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Overtime Rate
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-semibold text-gray-900">
-                      {formatCurrency(contractor.overtimeRate || 97.50)}
+                      {formatCurrency(contractor.overtimeRate)}
                     </span>
                     <span className="text-sm text-gray-600">/hour (1.5x)</span>
-                  </div>
                 </div>
               </div>
 
@@ -448,9 +448,9 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Budget Source
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
-                      {contractor.budgetSource || 'Project ABC123'}
+                      {contractor.budgetSource}
                     </span>
                   </div>
                 </div>
@@ -458,9 +458,9 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Cost Center
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
-                      {contractor.costCenter || 'IT-2024-CB'}
+                      {contractor.costCenter}
                     </span>
                   </div>
                 </div>
@@ -468,9 +468,9 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Monthly Cost Estimate
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-lg font-bold text-accent">
-                      {formatCurrency(contractor.monthlyCost || 11267)}
+                      {formatCurrency(contractor.monthlyCost)}
                     </span>
                   </div>
                 </div>
@@ -482,9 +482,9 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Payment Terms
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
-                      {contractor.paymentTerms || 'NET 30'}
+                      {contractor.paymentTerms}
                     </span>
                   </div>
                 </div>
@@ -492,9 +492,9 @@ const menuItems = [
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Invoice Submission
                   </label>
-                  <div className="p-3 bg-gray-50 rounded-lg">
+<div className="p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-900 font-medium">
-                      {contractor.invoiceSubmission || 'Via Coupa'}
+                      {contractor.invoiceSubmission}
                     </span>
                   </div>
                 </div>
@@ -503,12 +503,12 @@ const menuItems = [
                     Last Invoice
                   </label>
                   <div className="p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center">
+<div className="flex items-center">
                       <span className="text-gray-900 font-medium mr-2">
-                        {contractor.lastInvoice || 'INV-2024-0234'}
+                        {contractor.lastInvoice}
                       </span>
                       <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">
-                        {contractor.lastInvoiceStatus || 'Paid'}
+                        {contractor.lastInvoiceStatus}
                       </span>
                     </div>
                   </div>
@@ -524,8 +524,8 @@ const menuItems = [
             <CardHeader>
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-gray-900">Position History</h2>
-                <div className="text-sm text-gray-600">
-                  Total Time with ADB: {contractor.totalTimeWithADB || '3 years, 11 months'}
+<div className="text-sm text-gray-600">
+                  Total Time with ADB: {contractor.totalTimeWithADB}
                 </div>
               </div>
             </CardHeader>
@@ -534,12 +534,12 @@ const menuItems = [
                 {/* Current Position */}
                 <div className="border-l-4 border-blue-500 pl-4 bg-blue-50/30 rounded-r-lg p-4">
                   <div className="flex items-center justify-between mb-3">
-                    <div>
+<div>
                       <h3 className="font-semibold text-gray-900 text-lg">
-                        {contractor.currentPosition?.title || 'Senior Java Developer'}
-                      </h3>
+                        {contractor.currentPosition?.title}
+</h3>
                       <p className="text-sm text-gray-600">
-                        {contractor.currentPosition?.department || contractor.department} | {contractor.currentPosition?.duration || '01 Feb 2024 - Present'}
+                        {contractor.currentPosition?.department || contractor.department} | {contractor.currentPosition?.duration}
                       </p>
                     </div>
                     <div className="text-right">
@@ -551,17 +551,17 @@ const menuItems = [
                     <div>
                       <label className="block text-xs font-medium text-gray-500 mb-1">
                         Rate
-                      </label>
+</label>
                       <span className="text-sm text-gray-900 font-medium">
-                        {formatCurrency(contractor.hourlyRate || 65)}/hr
+                        {formatCurrency(contractor.hourlyRate)}/hr
                       </span>
                     </div>
                     <div>
                       <label className="block text-xs font-medium text-gray-500 mb-1">
                         Project
-                      </label>
+</label>
                       <span className="text-sm text-gray-900">
-                        {contractor.currentPosition?.project || 'Core Banking System'}
+                        {contractor.currentPosition?.project}
                       </span>
                     </div>
                     <div>
@@ -580,12 +580,12 @@ const menuItems = [
                   {/* Position 1 */}
                   <div className="border-l-4 border-gray-300 pl-4 bg-gray-50/50 rounded-r-lg p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div>
+<div>
                         <h4 className="font-medium text-gray-900">
-                          {contractor.previousPositions?.[0]?.title || 'Java Developer'}
-                        </h4>
+                          {contractor.previousPositions?.[0]?.title}
+</h4>
                         <p className="text-sm text-gray-600">
-                          {contractor.previousPositions?.[0]?.department || 'Finance Dept'} | {contractor.previousPositions?.[0]?.duration || '15 Jun 2022 - 31 Dec 2023'}
+                          {contractor.previousPositions?.[0]?.department} | {contractor.previousPositions?.[0]?.duration}
                         </p>
                       </div>
                       <div className="text-right">
@@ -593,9 +593,8 @@ const menuItems = [
                           {[...Array(5)].map((_, i) => (
                             <ApperIcon 
                               key={i} 
-                              name="Star" 
-                              size={14} 
-                              className={i < (contractor.previousPositions?.[0]?.rating || 4) ? 'text-yellow-400 fill-current' : 'text-gray-300'} 
+name="Star" 
+                              className={i < (contractor.previousPositions?.[0]?.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'} 
                             />
                           ))}
                         </div>
@@ -603,21 +602,21 @@ const menuItems = [
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Rate</label>
+<label className="block text-xs font-medium text-gray-500 mb-1">Rate</label>
                         <span className="text-sm text-gray-900">
-                          {formatCurrency(contractor.previousPositions?.[0]?.rate || 55)}/hr
+                          {formatCurrency(contractor.previousPositions?.[0]?.rate)}/hr
                         </span>
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Project</label>
+<label className="block text-xs font-medium text-gray-500 mb-1">Project</label>
                         <span className="text-sm text-gray-900">
-                          {contractor.previousPositions?.[0]?.project || 'Financial Reporting System'}
+                          {contractor.previousPositions?.[0]?.project}
                         </span>
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Supervisor</label>
+<label className="block text-xs font-medium text-gray-500 mb-1">Supervisor</label>
                         <span className="text-sm text-gray-900">
-                          {contractor.previousPositions?.[0]?.supervisor || 'Lisa Chen'}
+                          {contractor.previousPositions?.[0]?.supervisor}
                         </span>
                       </div>
                     </div>
@@ -626,12 +625,12 @@ const menuItems = [
                   {/* Position 2 */}
                   <div className="border-l-4 border-gray-300 pl-4 bg-gray-50/50 rounded-r-lg p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div>
+<div>
                         <h4 className="font-medium text-gray-900">
-                          {contractor.previousPositions?.[1]?.title || 'Junior Developer'}
-                        </h4>
+                          {contractor.previousPositions?.[1]?.title}
+</h4>
                         <p className="text-sm text-gray-600">
-                          {contractor.previousPositions?.[1]?.department || 'IT Support'} | {contractor.previousPositions?.[1]?.duration || '01 Mar 2021 - 14 Jun 2022'}
+                          {contractor.previousPositions?.[1]?.department} | {contractor.previousPositions?.[1]?.duration}
                         </p>
                       </div>
                       <div className="text-right">
@@ -639,9 +638,8 @@ const menuItems = [
                           {[...Array(5)].map((_, i) => (
                             <ApperIcon 
                               key={i} 
-                              name="Star" 
-                              size={14} 
-                              className={i < (contractor.previousPositions?.[1]?.rating || 5) ? 'text-yellow-400 fill-current' : 'text-gray-300'} 
+name="Star" 
+                              className={i < (contractor.previousPositions?.[1]?.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'} 
                             />
                           ))}
                         </div>
@@ -649,21 +647,21 @@ const menuItems = [
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Rate</label>
+<label className="block text-xs font-medium text-gray-500 mb-1">Rate</label>
                         <span className="text-sm text-gray-900">
-                          {formatCurrency(contractor.previousPositions?.[1]?.rate || 45)}/hr
+                          {formatCurrency(contractor.previousPositions?.[1]?.rate)}/hr
                         </span>
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Project</label>
+<label className="block text-xs font-medium text-gray-500 mb-1">Project</label>
                         <span className="text-sm text-gray-900">
-                          {contractor.previousPositions?.[1]?.project || 'Help Desk System'}
+                          {contractor.previousPositions?.[1]?.project}
                         </span>
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Supervisor</label>
+<label className="block text-xs font-medium text-gray-500 mb-1">Supervisor</label>
                         <span className="text-sm text-gray-900">
-                          {contractor.previousPositions?.[1]?.supervisor || 'Mike Wilson'}
+                          {contractor.previousPositions?.[1]?.supervisor}
                         </span>
                       </div>
                     </div>
@@ -671,10 +669,10 @@ const menuItems = [
                 </div>
               </div>
             </CardContent>
-          </Card>
-);
+</Card>
+        );
 
-case 'timeoff': {
+      case 'timeoff': {
         // Calculate YTD totals for 2024
         const currentYear = 2024;
         const ytdTimeOff = timeOffData
@@ -844,18 +842,18 @@ case 'timeoff': {
                           <span className="font-medium text-gray-900">Laptop</span>
                         </div>
                         <StatusBadge status="active" />
-                      </div>
+</div>
                       <p className="text-sm text-gray-600">
-                        {contractor.equipment?.laptop?.model || 'Dell Latitude 5520'}
-                      </p>
+                        {contractor.equipment?.laptop?.model}
+</p>
                       <p className="text-xs text-gray-500 mt-1">
-                        Asset: {contractor.equipment?.laptop?.assetId || 'IT-LAP-2024-089'}
-                      </p>
+                        Asset: {contractor.equipment?.laptop?.assetId}
+</p>
                       <p className="text-xs text-gray-500">
-                        Serial: {contractor.equipment?.laptop?.serial || 'DL5520XYZ123'}
-                      </p>
+                        Serial: {contractor.equipment?.laptop?.serial}
+</p>
                       <p className="text-xs text-gray-500">
-                        Issued: {contractor.equipment?.laptop?.issuedDate || '01 Feb 2024'}
+                        Issued: {contractor.equipment?.laptop?.issuedDate}
                       </p>
                     </div>
 
@@ -866,12 +864,12 @@ case 'timeoff': {
                           <span className="font-medium text-gray-900">Monitor</span>
                         </div>
                         <StatusBadge status="active" />
-                      </div>
+</div>
                       <p className="text-sm text-gray-600">
-                        {contractor.equipment?.monitor?.model || 'Dell 24"'}
-                      </p>
+                        {contractor.equipment?.monitor?.model}
+</p>
                       <p className="text-xs text-gray-500 mt-1">
-                        Asset: {contractor.equipment?.monitor?.assetId || 'IT-MON-2024-178'}
+                        Asset: {contractor.equipment?.monitor?.assetId}
                       </p>
                     </div>
 
@@ -882,9 +880,9 @@ case 'timeoff': {
                           <span className="font-medium text-gray-900">Keyboard & Mouse</span>
                         </div>
                         <StatusBadge status="active" />
-                      </div>
+</div>
                       <p className="text-sm text-gray-600">
-                        {contractor.equipment?.keyboard || 'Standard Set'}
+                        {contractor.equipment?.keyboard}
                       </p>
                     </div>
 
@@ -895,9 +893,9 @@ case 'timeoff': {
                           <span className="font-medium text-gray-900">Headset</span>
                         </div>
                         <StatusBadge status="active" />
-                      </div>
+</div>
                       <p className="text-sm text-gray-600">
-                        {contractor.equipment?.headset || 'Jabra Evolve 40'}
+                        {contractor.equipment?.headset}
                       </p>
                     </div>
                   </div>
@@ -917,9 +915,9 @@ case 'timeoff': {
                           <ApperIcon name="Check" size={16} className="text-green-600 mr-1" />
                           <span className="text-xs text-green-600">Active</span>
                         </div>
-                      </div>
+</div>
                       <p className="text-sm text-gray-600">
-                        {contractor.systemAccess?.email || 'ahmed.hassan@adb.org'}
+                        {contractor.systemAccess?.email}
                       </p>
                     </div>
 
@@ -961,9 +959,9 @@ case 'timeoff': {
                           <ApperIcon name="Check" size={16} className="text-green-600 mr-1" />
                           <span className="text-xs text-green-600">Floors 1-15</span>
                         </div>
-                      </div>
+</div>
                       <p className="text-sm text-gray-600">
-                        Parking: {contractor.systemAccess?.parking || 'Spot B2-45'}
+                        Parking: {contractor.systemAccess?.parking}
                       </p>
                     </div>
                   </div>
@@ -1016,8 +1014,8 @@ case 'timeoff': {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-6"
->
+className="space-y-6"
+    >
       {/* Header Section */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
