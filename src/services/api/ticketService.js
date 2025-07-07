@@ -1,5 +1,5 @@
 import ticketsData from '@/services/mockData/tickets.json';
-
+import { torService } from '@/services/api/torService';
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Mock data for dropdown options
@@ -76,7 +76,7 @@ export const ticketService = {
     return { ...ticket };
   },
 
-  async create(ticketData) {
+async create(ticketData) {
     await delay(400);
     
     // Process positions with auto-generated IDs
@@ -86,17 +86,32 @@ export const ticketService = {
     }));
 
     // Process attachments with auto-generated IDs
-    const attachments = (ticketData.attachments || []).map(attachment => ({
+    let attachments = (ticketData.attachments || []).map(attachment => ({
       ...attachment,
       Id: nextAttachmentId++,
       uploadDate: new Date().toISOString().split('T')[0]
     }));
+
+    // If TOR is selected, add it as an attachment
+    if (ticketData.selectedTor) {
+      attachments.unshift({
+        Id: nextAttachmentId++,
+        name: `${ticketData.selectedTor.title}.pdf`,
+        type: 'tor',
+        size: 0, // Mock size for template TOR
+        uploadDate: new Date().toISOString().split('T')[0],
+        url: `templates/tor-${ticketData.selectedTor.Id}.pdf`,
+        isTemplate: true,
+        torId: ticketData.selectedTor.Id
+      });
+    }
 
     const newTicket = {
       ...ticketData,
       Id: nextTicketId++,
       createdDate: new Date().toISOString().split('T')[0],
       status: 'draft',
+      attachedTor: ticketData.selectedTor,
       positions,
       attachments,
       workflow: {
@@ -327,6 +342,11 @@ export const ticketService = {
   async getWorkArrangements() {
     await delay(150);
     return [...mockWorkArrangements];
+  },
+// TOR integration methods
+  async getTors() {
+    await delay(200);
+    return await torService.getAll();
   },
 
   // File upload simulation

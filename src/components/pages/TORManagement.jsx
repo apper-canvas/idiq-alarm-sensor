@@ -169,9 +169,9 @@ const TORManagement = () => {
         className="mb-8"
       >
         <div className="flex items-center justify-between mb-6">
-          <div>
+<div>
             <h1 className="text-3xl font-bold text-gray-900">TOR Management</h1>
-            <p className="text-gray-600 mt-2">Manage Terms of Reference templates and create new TORs</p>
+            <p className="text-gray-600 mt-2">Manage reusable Terms of Reference templates for ticket creation</p>
           </div>
           <Button
             onClick={() => setShowCreateModal(true)}
@@ -304,13 +304,16 @@ const TORManagement = () => {
                             <ApperIcon name="Eye" size={14} className="mr-1" />
                             View
                           </Button>
-                          <Button
+<Button
                             size="sm"
                             variant="secondary"
-                            onClick={() => handleUseTorTemplate(tor)}
+                            onClick={() => {
+                              // Navigate to ticket creation with this TOR selected
+                              window.location.href = `/tickets/create?torId=${tor.Id}`;
+                            }}
                           >
-                            <ApperIcon name="Copy" size={14} className="mr-1" />
-                            Use Template
+                            <ApperIcon name="FileText" size={14} className="mr-1" />
+                            Use for Ticket
                           </Button>
                           <Button
                             size="sm"
@@ -623,12 +626,21 @@ const TORManagement = () => {
                 </div>
 
                 <div className="flex items-center gap-3 mt-8 pt-6 border-t border-gray-200">
-                  <Button
+<Button
                     variant="secondary"
+                    onClick={() => {
+                      window.location.href = `/tickets/create?torId=${selectedTor.Id}`;
+                    }}
+                  >
+                    <ApperIcon name="FileText" size={16} className="mr-2" />
+                    Use for Ticket
+                  </Button>
+                  <Button
+                    variant="outline"
                     onClick={() => handleUseTorTemplate(selectedTor)}
                   >
                     <ApperIcon name="Copy" size={16} className="mr-2" />
-                    Use as Template
+                    Copy as Template
                   </Button>
                   <Button
                     variant="outline"

@@ -10,6 +10,7 @@ import FormField from '@/components/molecules/FormField';
 import FileUpload from '@/components/atoms/FileUpload';
 import ApperIcon from '@/components/ApperIcon';
 import { ticketService } from '@/services/api/ticketService';
+import { torService } from '@/services/api/torService';
 import { cn } from '@/utils/cn';
 
 const TicketCreate = () => {
@@ -39,19 +40,20 @@ const TicketCreate = () => {
     description: ''
   }]);
 
-  const [attachments, setAttachments] = useState({
+const [attachments, setAttachments] = useState({
     tor: [],
     correspondence: []
   });
 
-  // Dropdown options
+  const [selectedTor, setSelectedTor] = useState(null);
+// Dropdown options
   const [dropdownData, setDropdownData] = useState({
     categories: [],
     budgetSources: [],
     projects: [],
-    workArrangements: []
+    workArrangements: [],
+    tors: []
   });
-
   // UI state
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -61,22 +63,35 @@ const TicketCreate = () => {
     loadDropdownData();
   }, []);
 
-  const loadDropdownData = async () => {
+const loadDropdownData = async () => {
     try {
       setLoading(true);
-      const [categories, budgetSources, projects, workArrangements] = await Promise.all([
+      const [categories, budgetSources, projects, workArrangements, tors] = await Promise.all([
         ticketService.getCategories(),
         ticketService.getBudgetSources(),
         ticketService.getProjects(),
-        ticketService.getWorkArrangements()
+        ticketService.getWorkArrangements(),
+        ticketService.getTors()
       ]);
 
       setDropdownData({
         categories,
         budgetSources,
         projects,
-        workArrangements
+        workArrangements,
+        tors
       });
+
+      // Check for pre-selected TOR from URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const torId = urlParams.get('torId');
+      if (torId) {
+        const preSelectedTor = tors.find(tor => tor.Id === parseInt(torId));
+        if (preSelectedTor) {
+          setSelectedTor(preSelectedTor);
+          toast.info(`TOR "${preSelectedTor.title}" pre-selected for this ticket`);
+        }
+      }
     } catch (error) {
       toast.error('Failed to load form data');
       console.error('Error loading dropdown data:', error);
@@ -185,8 +200,9 @@ const TicketCreate = () => {
     try {
       setSubmitting(true);
 
-      const ticketData = {
+const ticketData = {
         ...formData,
+        selectedTor,
         positions: positions.map(position => ({
           title: position.title,
           category: position.category || formData.category,
@@ -237,9 +253,9 @@ const TicketCreate = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div>
+<div>
           <h1 className="text-2xl font-bold text-gray-900">Create New Ticket</h1>
-          <p className="text-gray-600">Create a new position requisition ticket with multiple positions</p>
+          <p className="text-gray-600">Create a hiring requisition with TOR attachment and position details</p>
         </div>
         <Button
           variant="outline"
@@ -455,17 +471,61 @@ const TicketCreate = () => {
             </div>
           </CardContent>
         </Card>
+{/* TOR Selection */}
+        <Card>
+          <CardHeader>
+            <h3 className="text-lg font-semibold">Terms of Reference (TOR)</h3>
+            <p className="text-sm text-gray-600">Select or attach TOR document for this ticket</p>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <FormField
+                label="Select TOR Template"
+                error={errors.selectedTor}
+              >
+                <Select
+                  value={selectedTor?.Id || ''}
+                  onChange={(e) => {
+                    const torId = parseInt(e.target.value);
+                    const tor = dropdownData.tors.find(t => t.Id === torId);
+                    setSelectedTor(tor || null);
+                  }}
+                  error={!!errors.selectedTor}
+                >
+                  <option value="">Select TOR Template</option>
+                  {dropdownData.tors.map(tor => (
+                    <option key={tor.Id} value={tor.Id}>
+                      {tor.title} - {tor.category}
+                    </option>
+                  ))}
+                </Select>
+              </FormField>
+
+              {selectedTor && (
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-medium text-gray-900 mb-2">Selected TOR: {selectedTor.title}</h4>
+                  <p className="text-sm text-gray-600 mb-2">{selectedTor.description}</p>
+                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <span>Duration: {selectedTor.duration}</span>
+                    <span>Budget: {selectedTor.budget}</span>
+                    <span>Category: {selectedTor.category}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* File Attachments */}
         <Card>
           <CardHeader>
-            <h3 className="text-lg font-semibold">File Attachments</h3>
-            <p className="text-sm text-gray-600">Upload TOR documents and correspondence files</p>
+            <h3 className="text-lg font-semibold">Additional File Attachments</h3>
+            <p className="text-sm text-gray-600">Upload correspondence and supporting documents</p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-medium mb-3">Terms of Reference (TOR)</h4>
+                <h4 className="font-medium mb-3">Additional TOR Documents</h4>
                 <FileUpload
                   onFileSelect={(file) => handleFileUpload(file, 'tor')}
                   accept=".pdf,.doc,.docx"
@@ -473,7 +533,7 @@ const TicketCreate = () => {
                   disabled={submitting}
                 >
                   <p className="text-sm text-gray-600 mb-2">
-                    Upload TOR documents
+                    Upload additional TOR files
                   </p>
                   <p className="text-xs text-gray-400">
                     PDF, DOC, DOCX files only
