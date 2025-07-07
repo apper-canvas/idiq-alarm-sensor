@@ -204,7 +204,7 @@ if (tickets.length === 0) {
         y: 0
     }}
     className="space-y-6">
-    <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+<div className="flex flex-col md:flex-row gap-4 items-center justify-between">
         <SearchBar
             onSearch={setSearchTerm}
             placeholder="Search tickets..."
@@ -229,101 +229,104 @@ if (tickets.length === 0) {
                 <ApperIcon name="Plus" className="w-4 h-4" />Create Ticket
                           </Button>
         </div>
-        <Card>
-            <CardContent className="p-0">
-                <div className="overflow-x-auto">
-                    <table className="w-full">
-                        <thead className="bg-surface border-b border-gray-200">
-                            <tr>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Ticket</th>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Category</th>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Supervisor</th>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Project</th>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Positions</th>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Status</th>
-                                <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {filteredTickets.map(ticket => <motion.tr
-                                key={ticket.Id}
-                                initial={{
-                                    opacity: 0
-                                }}
-                                animate={{
-                                    opacity: 1
-                                }}
-                                whileHover={{
-                                    backgroundColor: "#f9fafb"
-                                }}
-                                transition={{
-                                    duration: 0.15
-                                }}>
-                                <td className="py-4 px-6">
-                                    <div>
-                                        <p className="text-sm font-medium text-gray-900">{ticket.title}</p>
-                                        <p className="text-sm text-gray-500">Created {formatDate(ticket.createdDate)}</p>
-                                    </div>
-                                </td>
-                                <td className="py-4 px-6">
-                                    <p className="text-sm text-gray-900">{ticket.category}</p>
-                                </td>
-                                <td className="py-4 px-6">
-                                    <p className="text-sm text-gray-900">{ticket.supervisor}</p>
-                                </td>
-                                <td className="py-4 px-6">
-                                    <p className="text-sm text-gray-900">{ticket.project}</p>
-                                </td>
-                                <td className="py-4 px-6">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-sm text-gray-900">{ticket.positions?.length || 0}position{ticket.positions?.length !== 1 ? "s" : ""}</span>
-                                        {ticket.positions?.length > 0 && <div className="flex flex-wrap gap-1">
-                                            {ticket.positions.slice(0, 2).map((position, index) => <span
-                                                key={index}
-                                                className="text-xs bg-secondary/10 text-secondary px-2 py-1 rounded">
-                                                {position.title}
-                                            </span>)}
-                                            {ticket.positions.length > 2 && <span className="text-xs text-gray-500">+{ticket.positions.length - 2}more</span>}
-                                        </div>}
-                                    </div>
-                                </td>
-                                <td className="py-4 px-6">
-                                    <StatusBadge status={ticket.status} type="ticket" />
-                                </td>
-                                <td className="py-4 px-6">
-                                    <div className="flex items-center gap-2">
-                                        <Button variant="ghost" size="sm" title="View Details">
-                                            <ApperIcon name="Eye" className="w-4 h-4" />
-                                        </Button>
-                                        <Button variant="ghost" size="sm" title="Edit">
-                                            <ApperIcon name="Edit" className="w-4 h-4" />
-                                        </Button>
-                                        {/* Workflow Actions */}
-                                        {getWorkflowActions(ticket).map(action => <Button
-                                            key={action.key}
-                                            variant={action.variant}
-                                            size="sm"
-                                            onClick={() => action.key === "float" ? handleFloatToAgencies(ticket.Id) : handleWorkflowAction(ticket.Id, action.key)}
-                                            disabled={actionLoading[`${ticket.Id}_${action.key}`]}
-                                            title={action.label}
-                                            className="flex items-center gap-1">
-                                            {actionLoading[`${ticket.Id}_${action.key}`] ? <ApperIcon name="Loader2" className="w-3 h-3 animate-spin" /> : <ApperIcon name={action.icon} className="w-3 h-3" />}
-                                            <span className="hidden lg:inline text-xs">{action.label}</span>
-                                        </Button>)}
-                                    </div>
-                                </td>
-                            </motion.tr>)}
-                        </tbody>
-                    </table>
-                </div>
-            </CardContent>
-        </Card>
-        {filteredTickets.length === 0 && tickets.length > 0 && <Empty
-            title="No tickets match your search"
-            message="Try adjusting your search criteria or status filter."
-            icon="Search"
-            showAction={false} />}
-    </div></motion.div>
+    </div>
+    
+    <Card>
+        <CardContent className="p-0">
+            <div className="overflow-x-auto">
+                <table className="w-full">
+                    <thead className="bg-surface border-b border-gray-200">
+                        <tr>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Ticket</th>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Category</th>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Supervisor</th>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Project</th>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Positions</th>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Status</th>
+                            <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                        {filteredTickets.map(ticket => <motion.tr
+                            key={ticket.Id}
+                            initial={{
+                                opacity: 0
+                            }}
+                            animate={{
+                                opacity: 1
+                            }}
+                            whileHover={{
+                                backgroundColor: "#f9fafb"
+                            }}
+                            transition={{
+                                duration: 0.15
+                            }}>
+                            <td className="py-4 px-6">
+                                <div>
+                                    <p className="text-sm font-medium text-gray-900">{ticket.title}</p>
+                                    <p className="text-sm text-gray-500">Created {formatDate(ticket.createdDate)}</p>
+                                </div>
+                            </td>
+                            <td className="py-4 px-6">
+                                <p className="text-sm text-gray-900">{ticket.category}</p>
+                            </td>
+                            <td className="py-4 px-6">
+                                <p className="text-sm text-gray-900">{ticket.supervisor}</p>
+                            </td>
+                            <td className="py-4 px-6">
+                                <p className="text-sm text-gray-900">{ticket.project}</p>
+                            </td>
+                            <td className="py-4 px-6">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-sm text-gray-900">{ticket.positions?.length || 0}position{ticket.positions?.length !== 1 ? "s" : ""}</span>
+                                    {ticket.positions?.length > 0 && <div className="flex flex-wrap gap-1">
+                                        {ticket.positions.slice(0, 2).map((position, index) => <span
+                                            key={index}
+                                            className="text-xs bg-secondary/10 text-secondary px-2 py-1 rounded">
+                                            {position.title}
+                                        </span>)}
+                                        {ticket.positions.length > 2 && <span className="text-xs text-gray-500">+{ticket.positions.length - 2}more</span>}
+                                    </div>}
+                                </div>
+                            </td>
+                            <td className="py-4 px-6">
+                                <StatusBadge status={ticket.status} type="ticket" />
+                            </td>
+                            <td className="py-4 px-6">
+                                <div className="flex items-center gap-2">
+                                    <Button variant="ghost" size="sm" title="View Details">
+                                        <ApperIcon name="Eye" className="w-4 h-4" />
+                                    </Button>
+                                    <Button variant="ghost" size="sm" title="Edit">
+                                        <ApperIcon name="Edit" className="w-4 h-4" />
+                                    </Button>
+                                    {/* Workflow Actions */}
+                                    {getWorkflowActions(ticket).map(action => <Button
+                                        key={action.key}
+                                        variant={action.variant}
+                                        size="sm"
+                                        onClick={() => action.key === "float" ? handleFloatToAgencies(ticket.Id) : handleWorkflowAction(ticket.Id, action.key)}
+                                        disabled={actionLoading[`${ticket.Id}_${action.key}`]}
+                                        title={action.label}
+                                        className="flex items-center gap-1">
+                                        {actionLoading[`${ticket.Id}_${action.key}`] ? <ApperIcon name="Loader2" className="w-3 h-3 animate-spin" /> : <ApperIcon name={action.icon} className="w-3 h-3" />}
+                                        <span className="hidden lg:inline text-xs">{action.label}</span>
+                                    </Button>)}
+                                </div>
+                            </td>
+                        </motion.tr>)}
+                    </tbody>
+                </table>
+            </div>
+        </CardContent>
+    </Card>
+    
+    {filteredTickets.length === 0 && tickets.length > 0 && <Empty
+        title="No tickets match your search"
+        message="Try adjusting your search criteria or status filter."
+        icon="Search"
+        showAction={false} />}
+    </motion.div>
   );
 };
 
