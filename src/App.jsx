@@ -11,7 +11,7 @@ import Contractors from "@/components/pages/Contractors";
 import Requisitions from "@/components/pages/Requisitions";
 import Reports from "@/components/pages/Reports";
 import Settings from "@/components/pages/Settings";
-
+import TicketCreate from "@/components/pages/TicketCreate";
 
 function App() {
 return (
@@ -23,8 +23,9 @@ return (
           <Route path="/requisitions" element={<Requisitions />} />
           <Route path="/tors" element={<TORManagement />} />
           <Route path="/timesheets" element={<Timesheets />} />
-          <Route path="/reports" element={<Reports />} />
+<Route path="/reports" element={<Reports />} />
           <Route path="/agencies" element={<Agencies />} />
+          <Route path="/tickets/create" element={<TicketCreate />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>

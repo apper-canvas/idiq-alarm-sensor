@@ -1,0 +1,74 @@
+[
+  {
+    "Id": 1,
+    "title": "Backend Developer Position",
+    "category": "Technical",
+    "supervisor": "John Smith",
+    "budgetSource": "Capital Projects",
+    "project": "Core Banking Modernization",
+    "workArrangement": "Hybrid",
+    "status": "open",
+    "createdDate": "2024-02-20",
+    "positions": [
+      {
+        "Id": 1,
+        "title": "Senior Backend Developer",
+        "category": "Technical",
+        "supervisor": "John Smith",
+        "budgetSource": "Capital Projects",
+        "project": "Core Banking Modernization",
+        "workArrangement": "Hybrid",
+        "skillsRequired": ["Java", "Spring Boot", "Microservices"],
+        "budgetRange": { "min": 80, "max": 100 },
+        "description": "Lead backend development for core banking system"
+      }
+    ],
+    "attachments": [
+      {
+        "Id": 1,
+        "name": "TOR_Backend_Developer.pdf",
+        "type": "tor",
+        "size": 245760,
+        "uploadDate": "2024-02-20"
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "title": "Risk Management Team",
+    "category": "Finance",
+    "supervisor": "Sarah Johnson",
+    "budgetSource": "Operational Budget",
+    "project": "Risk Assessment Initiative",
+    "workArrangement": "On-site",
+    "status": "in_progress",
+    "createdDate": "2024-02-18",
+    "positions": [
+      {
+        "Id": 2,
+        "title": "Risk Analyst",
+        "category": "Finance",
+        "supervisor": "Sarah Johnson",
+        "budgetSource": "Operational Budget",
+        "project": "Risk Assessment Initiative",
+        "workArrangement": "On-site",
+        "skillsRequired": ["Risk Analysis", "SAS", "Python"],
+        "budgetRange": { "min": 70, "max": 85 },
+        "description": "Analyze credit risk and create models"
+      },
+      {
+        "Id": 3,
+        "title": "Senior Risk Manager",
+        "category": "Finance",
+        "supervisor": "Sarah Johnson",
+        "budgetSource": "Operational Budget",
+        "project": "Risk Assessment Initiative",
+        "workArrangement": "On-site",
+        "skillsRequired": ["Risk Management", "Leadership", "Compliance"],
+        "budgetRange": { "min": 95, "max": 120 },
+        "description": "Lead risk management team and strategy"
+      }
+    ],
+    "attachments": []
+  }
+]

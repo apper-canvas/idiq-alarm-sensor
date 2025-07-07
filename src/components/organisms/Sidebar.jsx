@@ -9,6 +9,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   
 const navigation = [
     { name: 'Dashboard', href: '/', icon: 'LayoutDashboard' },
+    { name: 'Create Ticket', href: '/tickets/create', icon: 'Plus' },
     { name: 'Contractors', href: '/contractors', icon: 'Users' },
     { name: 'Requisitions', href: '/requisitions', icon: 'FileText' },
     { name: 'TOR Management', href: '/tors', icon: 'FileCheck' },
