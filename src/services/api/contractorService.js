@@ -42,6 +42,14 @@ export const contractorService = {
     
     contractorsData.splice(index, 1);
 return { success: true };
+  },
+
+  async getExpiringContracts() {
+    await delay(250);
+    const expiringContractors = contractorsData.filter(contractor => 
+      contractor.daysRemaining <= 30 && contractor.daysRemaining > 0
+    );
+    return [...expiringContractors];
   }
 };
 

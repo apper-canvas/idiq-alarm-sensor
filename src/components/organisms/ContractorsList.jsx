@@ -35,11 +35,18 @@ const ContractorsList = () => {
     loadContractors();
   }, []);
 
-  const filteredContractors = contractors.filter(contractor => {
+const filteredContractors = contractors.filter(contractor => {
     const matchesSearch = contractor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          contractor.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          contractor.department.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = selectedStatus === 'all' || contractor.status.toLowerCase() === selectedStatus.toLowerCase();
+    
+    let matchesStatus = true;
+    if (selectedStatus === 'expiring') {
+      matchesStatus = contractor.daysRemaining <= 30 && contractor.daysRemaining > 0;
+    } else if (selectedStatus !== 'all') {
+      matchesStatus = contractor.status.toLowerCase() === selectedStatus.toLowerCase();
+    }
+    
     return matchesSearch && matchesStatus;
   });
 
@@ -49,6 +56,28 @@ const ContractorsList = () => {
       month: 'short',
       day: 'numeric'
     });
+};
+
+  const getExpiryStatus = (daysRemaining) => {
+    if (daysRemaining <= 0) return 'expired';
+    if (daysRemaining <= 30) return 'expiring';
+    return 'active';
+  };
+
+  const getExpiryAlertColor = (status) => {
+    switch (status) {
+      case 'expired': return 'text-error bg-error/10';
+      case 'expiring': return 'text-warning bg-warning/10';
+      default: return 'text-gray-600';
+    }
+  };
+
+  const getExpiryIcon = (status) => {
+    switch (status) {
+      case 'expired': return 'AlertTriangle';
+      case 'expiring': return 'Clock';
+      default: return null;
+    }
   };
 
   if (loading) {
@@ -91,7 +120,7 @@ const ContractorsList = () => {
         />
         
         <div className="flex items-center gap-4">
-          <select
+<select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary"
@@ -101,6 +130,7 @@ const ContractorsList = () => {
             <option value="pending">Pending</option>
             <option value="inactive">Inactive</option>
             <option value="onboarding">Onboarding</option>
+            <option value="expiring">Expiring Soon</option>
           </select>
           
           <Button variant="primary" className="flex items-center gap-2">
@@ -150,10 +180,27 @@ const ContractorsList = () => {
                     <td className="py-4 px-6">
                       <p className="text-sm text-gray-900">{contractor.manager}</p>
                     </td>
-                    <td className="py-4 px-6">
+<td className="py-4 px-6">
                       <div className="text-sm text-gray-900">
                         <p>{formatDate(contractor.startDate)} - {formatDate(contractor.endDate)}</p>
-                        <p className="text-xs text-gray-500">{contractor.daysRemaining} days remaining</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          {(() => {
+                            const expiryStatus = getExpiryStatus(contractor.daysRemaining);
+                            const alertColor = getExpiryAlertColor(expiryStatus);
+                            const alertIcon = getExpiryIcon(expiryStatus);
+                            
+                            return (
+                              <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${alertColor}`}>
+                                {alertIcon && <ApperIcon name={alertIcon} className="w-3 h-3" />}
+                                <span>
+                                  {contractor.daysRemaining <= 0 
+                                    ? 'Expired' 
+                                    : `${contractor.daysRemaining} days remaining`}
+                                </span>
+                              </div>
+                            );
+                          })()}
+                        </div>
                       </div>
                     </td>
                     <td className="py-4 px-6">
