@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { timeOffService } from '@/services/api/timeOffService';
-import { Card, CardContent, CardHeader } from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import Input from '@/components/atoms/Input';
-import Select from '@/components/atoms/Select';
-import { Label } from '@/components/atoms/Label';
-import FormField from '@/components/molecules/FormField';
-import ApperIcon from '@/components/ApperIcon';
-import Loading from '@/components/ui/Loading';
-import Error from '@/components/ui/Error';
-import { cn } from '@/utils/cn';
-
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { cn } from "@/utils/cn";
+import ApperIcon from "@/components/ApperIcon";
+import Select from "@/components/atoms/Select";
+import Label from "@/components/atoms/Label";
+import Button from "@/components/atoms/Button";
+import { Card, CardContent, CardHeader } from "@/components/atoms/Card";
+import Input from "@/components/atoms/Input";
+import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
+import FormField from "@/components/molecules/FormField";
+import { timeOffService } from "@/services/api/timeOffService";
 const TimeOffManagement = () => {
   const [timeOffRequests, setTimeOffRequests] = useState([]);
   const [loading, setLoading] = useState(true);
