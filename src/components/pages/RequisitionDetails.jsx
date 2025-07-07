@@ -102,9 +102,9 @@ const RequisitionDetails = () => {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Select
+<Select
             value={status}
-            onValueChange={handleStatusChange}
+            onChange={(e) => handleStatusChange(e.target.value)}
             className="w-48"
           >
             {statusOptions.map(option => (
@@ -374,11 +374,11 @@ const RequisitionDetails = () => {
 
               {/* Filters and Sorting Options */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div>
+<div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
                   <Select
                     value={agencyFilters.location}
-                    onValueChange={(value) => setAgencyFilters(prev => ({ ...prev, location: value }))}
+                    onChange={(e) => setAgencyFilters(prev => ({ ...prev, location: e.target.value }))}
                     className="w-full"
                   >
                     <option value="">All Locations</option>
@@ -391,7 +391,7 @@ const RequisitionDetails = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Specialization</label>
                   <Select
                     value={agencyFilters.specialization}
-                    onValueChange={(value) => setAgencyFilters(prev => ({ ...prev, specialization: value }))}
+                    onChange={(e) => setAgencyFilters(prev => ({ ...prev, specialization: e.target.value }))}
                     className="w-full"
                   >
                     <option value="">All Specializations</option>
@@ -404,7 +404,7 @@ const RequisitionDetails = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
                   <Select
                     value={agencyFilters.rating}
-                    onValueChange={(value) => setAgencyFilters(prev => ({ ...prev, rating: value }))}
+                    onChange={(e) => setAgencyFilters(prev => ({ ...prev, rating: e.target.value }))}
                     className="w-full"
                   >
                     <option value="">All Ratings</option>
