@@ -68,7 +68,54 @@
         "budgetRange": { "min": 95, "max": 120 },
         "description": "Lead risk management team and strategy"
       }
-    ],
+],
     "attachments": []
+  },
+  {
+    "Id": 3,
+    "title": "Frontend Developer for Digital Banking",
+    "category": "Technical",
+    "supervisor": "Michael Chen",
+    "budgetSource": "Digital Transformation",
+    "project": "Mobile Banking Enhancement",
+    "workArrangement": "Hybrid",
+    "status": "posted",
+    "createdDate": "2024-02-15",
+    "positions": [
+      {
+        "Id": 4,
+        "title": "Senior Frontend Developer",
+        "category": "Technical",
+        "supervisor": "Michael Chen",
+        "budgetSource": "Digital Transformation",
+        "project": "Mobile Banking Enhancement",
+        "workArrangement": "Hybrid",
+        "skillsRequired": ["React", "TypeScript", "Tailwind CSS", "Mobile Development"],
+        "budgetRange": { "min": 75, "max": 95 },
+        "description": "Develop responsive web and mobile interfaces for digital banking platform"
+      }
+    ],
+    "attachments": [
+      {
+        "Id": 2,
+        "name": "TOR_Frontend_Developer.pdf",
+        "type": "tor",
+        "size": 187420,
+        "uploadDate": "2024-02-15"
+      }
+    ],
+    "workflow": {
+      "submittedBy": "Michael Chen",
+      "submittedDate": "2024-02-15",
+      "validatedBy": "Resource Team",
+      "validatedDate": "2024-02-16",
+      "postedBy": "Admin User",
+      "postedDate": "2024-02-17",
+      "startedBy": null,
+      "startedDate": null,
+      "closedBy": null,
+      "closedDate": null,
+      "floatedAgencies": []
+    }
   }
 ]
