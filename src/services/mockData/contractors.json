@@ -1,5 +1,5 @@
 [
-  {
+{
     "Id": 1,
     "name": "John Smith",
     "email": "john.smith@agency.com",
@@ -13,9 +13,12 @@
     "status": "active",
     "daysRemaining": 45,
     "skills": ["Java", "Spring Boot", "Microservices"],
-    "photo": null
+    "photo": null,
+    "workplanId": 1,
+    "workplanName": "Technology Development"
   },
   {
+{
     "Id": 2,
     "name": "Emily Davis",
     "email": "emily.davis@staffing.com",
@@ -29,9 +32,12 @@
     "status": "active",
     "daysRemaining": 62,
     "skills": ["Risk Analysis", "Compliance", "Audit"],
-    "photo": null
+    "photo": null,
+    "workplanId": 2,
+    "workplanName": "Risk Management Initiative"
   },
   {
+{
     "Id": 3,
     "name": "Robert Wilson",
     "email": "robert.wilson@consulting.com",
@@ -45,9 +51,12 @@
     "status": "active",
     "daysRemaining": 38,
     "skills": ["Process Improvement", "Lean Six Sigma", "Project Management"],
-    "photo": null
+    "photo": null,
+    "workplanId": 3,
+    "workplanName": "Operations Optimization"
   },
   {
+{
     "Id": 4,
     "name": "Jennifer Brown",
     "email": "jennifer.brown@agency.com",
@@ -61,9 +70,12 @@
     "status": "onboarding",
     "daysRemaining": 76,
     "skills": ["Financial Analysis", "Excel", "SAP"],
-    "photo": null
+    "photo": null,
+    "workplanId": null,
+    "workplanName": ""
   },
   {
+{
     "Id": 5,
     "name": "Michael Johnson",
     "email": "michael.johnson@staffing.com",
@@ -77,9 +89,12 @@
     "status": "inactive",
     "daysRemaining": 0,
     "skills": ["React", "Node.js", "AWS"],
-    "photo": null
+    "photo": null,
+    "workplanId": null,
+    "workplanName": ""
   },
   {
+{
     "Id": 6,
     "name": "Amanda Martinez",
     "email": "amanda.martinez@consulting.com",
@@ -93,6 +108,8 @@
     "status": "pending",
     "daysRemaining": 52,
     "skills": ["Regulatory Compliance", "Policy Development", "Training"],
-    "photo": null
+    "photo": null,
+    "workplanId": null,
+    "workplanName": ""
   }
 ]

@@ -1,5 +1,5 @@
 [
-  {
+{
     "Id": 1,
     "contractorId": 1,
     "contractorName": "John Smith",
@@ -20,9 +20,12 @@
     "approverId": 1,
     "approverName": "Sarah Johnson",
     "submittedDate": "2024-02-25",
-    "notes": "Regular work week, all tasks completed on schedule."
+    "notes": "Regular work week, all tasks completed on schedule.",
+    "workplanId": 1,
+    "workplanName": "Technology Development"
   },
   {
+{
     "Id": 2,
     "contractorId": 2,
     "contractorName": "Emily Davis",
@@ -44,9 +47,12 @@
     "approverName": "Michael Chen",
     "submittedDate": "2024-02-25",
     "approvedDate": "2024-02-26",
-    "notes": "Extra hours for quarterly risk report deadline."
+    "notes": "Extra hours for quarterly risk report deadline.",
+    "workplanId": 2,
+    "workplanName": "Risk Management Initiative"
   },
   {
+{
     "Id": 3,
     "contractorId": 3,
     "contractorName": "Robert Wilson",
@@ -68,9 +74,12 @@
     "approverName": "Lisa Anderson",
     "submittedDate": "2024-02-25",
     "approvedDate": "2024-02-26",
-    "notes": "Left early Friday for personal appointment."
+    "notes": "Left early Friday for personal appointment.",
+    "workplanId": 3,
+    "workplanName": "Operations Optimization"
   },
   {
+{
     "Id": 4,
     "contractorId": 4,
     "contractorName": "Jennifer Brown",
@@ -92,9 +101,12 @@
     "approverName": "David Rodriguez",
     "submittedDate": "2024-02-25",
     "rejectedDate": "2024-02-26",
-    "notes": "Hours not aligned with project deliverables. Please revise and resubmit."
+    "notes": "Hours not aligned with project deliverables. Please revise and resubmit.",
+    "workplanId": null,
+    "workplanName": ""
   },
   {
+{
     "Id": 5,
     "contractorId": 1,
     "contractorName": "John Smith",
@@ -116,9 +128,12 @@
     "approverName": "Sarah Johnson",
     "submittedDate": "2024-02-18",
     "approvedDate": "2024-02-19",
-    "notes": "Standard work week, good progress on microservices development."
+    "notes": "Standard work week, good progress on microservices development.",
+    "workplanId": 1,
+    "workplanName": "Technology Development"
   },
   {
+{
     "Id": 6,
     "contractorId": 6,
     "contractorName": "Amanda Martinez",
@@ -139,6 +154,8 @@
     "approverId": 5,
     "approverName": "Kevin Thompson",
     "submittedDate": null,
-    "notes": "Policy review and training materials preparation."
+    "notes": "Policy review and training materials preparation.",
+    "workplanId": null,
+    "workplanName": ""
   }
 ]

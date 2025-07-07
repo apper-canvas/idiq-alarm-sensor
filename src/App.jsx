@@ -25,7 +25,8 @@ return (
           <Route path="/requisitions" element={<Requisitions />} />
           <Route path="/requisitions/:id" element={<RequisitionDetails />} />
           <Route path="/tors" element={<TORManagement />} />
-          <Route path="/timesheets" element={<Timesheets />} />
+<Route path="/timesheets" element={<Timesheets />} />
+          <Route path="/timesheets/workplans" element={<Timesheets />} />
 <Route path="/reports" element={<Reports />} />
           <Route path="/agencies" element={<Agencies />} />
           <Route path="/tickets/create" element={<TicketCreate />} />
