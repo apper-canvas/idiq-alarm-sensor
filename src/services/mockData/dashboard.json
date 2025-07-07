@@ -1,0 +1,79 @@
+{
+  "stats": {
+    "activeContractors": 47,
+    "pendingRequisitions": 8,
+    "pendingApprovals": 12,
+    "monthlyBudget": 485000
+  },
+  "recentActivity": [
+    {
+      "Id": 1,
+      "type": "contractor_added",
+      "description": "New contractor John Smith added to Technology department",
+      "user": "Sarah Johnson",
+      "timestamp": "2024-02-26T10:30:00Z"
+    },
+    {
+      "Id": 2,
+      "type": "timesheet_submitted",
+      "description": "Timesheet submitted by Emily Davis for week ending Feb 25",
+      "user": "Emily Davis",
+      "timestamp": "2024-02-26T09:15:00Z"
+    },
+    {
+      "Id": 3,
+      "type": "requisition_created",
+      "description": "New requisition created for Senior Java Developer position",
+      "user": "Michael Chen",
+      "timestamp": "2024-02-26T08:45:00Z"
+    },
+    {
+      "Id": 4,
+      "type": "approval_completed",
+      "description": "Timesheet approved for Robert Wilson",
+      "user": "Lisa Anderson",
+      "timestamp": "2024-02-26T08:20:00Z"
+    },
+    {
+      "Id": 5,
+      "type": "contractor_added",
+      "description": "Jennifer Brown started onboarding process",
+      "user": "David Rodriguez",
+      "timestamp": "2024-02-25T16:45:00Z"
+    }
+  ],
+  "pendingApprovals": [
+    {
+      "Id": 1,
+      "type": "timesheet",
+      "title": "John Smith - Week Ending Feb 25",
+      "submittedBy": "John Smith",
+      "submittedDate": "2024-02-25",
+      "priority": "normal"
+    },
+    {
+      "Id": 2,
+      "type": "overtime",
+      "title": "Emily Davis - Overtime Request",
+      "submittedBy": "Emily Davis",
+      "submittedDate": "2024-02-24",
+      "priority": "urgent"
+    },
+    {
+      "Id": 3,
+      "type": "requisition",
+      "title": "Cybersecurity Analyst Position",
+      "submittedBy": "Jennifer Williams",
+      "submittedDate": "2024-02-25",
+      "priority": "high"
+    },
+    {
+      "Id": 4,
+      "type": "timesheet",
+      "title": "Amanda Martinez - Week Ending Feb 25",
+      "submittedBy": "Amanda Martinez",
+      "submittedDate": "2024-02-25",
+      "priority": "normal"
+    }
+  ]
+}

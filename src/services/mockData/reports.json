@@ -1,0 +1,61 @@
+{
+  "totalContractors": 47,
+  "activeDepartments": 8,
+  "monthlySpend": 485000,
+  "avgContractLength": 180,
+  "departmentBreakdown": [
+    {
+      "department": "Technology",
+      "contractors": 18,
+      "spend": 195000
+    },
+    {
+      "department": "Risk Management",
+      "contractors": 8,
+      "spend": 78000
+    },
+    {
+      "department": "Operations",
+      "contractors": 7,
+      "spend": 68000
+    },
+    {
+      "department": "Finance",
+      "contractors": 6,
+      "spend": 58000
+    },
+    {
+      "department": "Compliance",
+      "contractors": 5,
+      "spend": 48000
+    },
+    {
+      "department": "Analytics",
+      "contractors": 3,
+      "spend": 38000
+    }
+  ],
+  "monthlyTrends": [
+    {
+      "month": "Jan 2024",
+      "contractors": 42,
+      "spend": 445000
+    },
+    {
+      "month": "Feb 2024",
+      "contractors": 47,
+      "spend": 485000
+    },
+    {
+      "month": "Mar 2024",
+      "contractors": 45,
+      "spend": 465000
+    }
+  ],
+  "contractorStatus": {
+    "active": 38,
+    "onboarding": 5,
+    "pending": 3,
+    "inactive": 1
+  }
+}

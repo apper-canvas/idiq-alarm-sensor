@@ -1,0 +1,152 @@
+[
+  {
+    "Id": 1,
+    "name": "TechTalent Solutions",
+    "contactEmail": "contact@techtalent.com",
+    "contactPhone": "+1 (555) 111-2222",
+    "address": "123 Business District, New York, NY 10001",
+    "activeContractors": 15,
+    "totalContractors": 28,
+    "successRate": 92,
+    "rating": 4.5,
+    "specialties": ["Technology", "Digital Transformation", "Software Development"],
+    "contractTerms": {
+      "paymentTerms": "Net 30",
+      "cancellationNotice": "14 days",
+      "markupRate": 25
+    },
+    "keyContacts": [
+      {
+        "name": "Maria Rodriguez",
+        "role": "Account Manager",
+        "email": "maria.rodriguez@techtalent.com",
+        "phone": "+1 (555) 111-2223"
+      }
+    ],
+    "performance": {
+      "onTimeDelivery": 95,
+      "clientSatisfaction": 4.6,
+      "retentionRate": 88
+    }
+  },
+  {
+    "Id": 2,
+    "name": "Financial Staffing Pro",
+    "contactEmail": "hello@financialstaffing.com",
+    "contactPhone": "+1 (555) 222-3333",
+    "address": "456 Corporate Plaza, Chicago, IL 60601",
+    "activeContractors": 12,
+    "totalContractors": 22,
+    "successRate": 89,
+    "rating": 4.3,
+    "specialties": ["Finance", "Risk Management", "Compliance", "Audit"],
+    "contractTerms": {
+      "paymentTerms": "Net 15",
+      "cancellationNotice": "7 days",
+      "markupRate": 22
+    },
+    "keyContacts": [
+      {
+        "name": "James Wilson",
+        "role": "Senior Recruiter",
+        "email": "james.wilson@financialstaffing.com",
+        "phone": "+1 (555) 222-3334"
+      }
+    ],
+    "performance": {
+      "onTimeDelivery": 91,
+      "clientSatisfaction": 4.2,
+      "retentionRate": 85
+    }
+  },
+  {
+    "Id": 3,
+    "name": "Operations Excellence Group",
+    "contactEmail": "info@opexcellence.com",
+    "contactPhone": "+1 (555) 333-4444",
+    "address": "789 Innovation Center, San Francisco, CA 94105",
+    "activeContractors": 8,
+    "totalContractors": 18,
+    "successRate": 94,
+    "rating": 4.7,
+    "specialties": ["Operations", "Process Improvement", "Project Management"],
+    "contractTerms": {
+      "paymentTerms": "Net 30",
+      "cancellationNotice": "10 days",
+      "markupRate": 28
+    },
+    "keyContacts": [
+      {
+        "name": "Sarah Kim",
+        "role": "Director of Operations",
+        "email": "sarah.kim@opexcellence.com",
+        "phone": "+1 (555) 333-4445"
+      }
+    ],
+    "performance": {
+      "onTimeDelivery": 97,
+      "clientSatisfaction": 4.8,
+      "retentionRate": 92
+    }
+  },
+  {
+    "Id": 4,
+    "name": "Compliance Consulting Partners",
+    "contactEmail": "team@complianceconsulting.com",
+    "contactPhone": "+1 (555) 444-5555",
+    "address": "321 Legal District, Washington, DC 20001",
+    "activeContractors": 6,
+    "totalContractors": 14,
+    "successRate": 91,
+    "rating": 4.4,
+    "specialties": ["Compliance", "Regulatory Affairs", "Legal Support"],
+    "contractTerms": {
+      "paymentTerms": "Net 30",
+      "cancellationNotice": "14 days",
+      "markupRate": 30
+    },
+    "keyContacts": [
+      {
+        "name": "Michael Brown",
+        "role": "Managing Partner",
+        "email": "michael.brown@complianceconsulting.com",
+        "phone": "+1 (555) 444-5556"
+      }
+    ],
+    "performance": {
+      "onTimeDelivery": 93,
+      "clientSatisfaction": 4.3,
+      "retentionRate": 87
+    }
+  },
+  {
+    "Id": 5,
+    "name": "Analytics & Data Solutions",
+    "contactEmail": "connect@analyticsdata.com",
+    "contactPhone": "+1 (555) 555-6666",
+    "address": "654 Data Center Blvd, Austin, TX 78701",
+    "activeContractors": 10,
+    "totalContractors": 16,
+    "successRate": 96,
+    "rating": 4.8,
+    "specialties": ["Data Science", "Analytics", "Business Intelligence"],
+    "contractTerms": {
+      "paymentTerms": "Net 15",
+      "cancellationNotice": "7 days",
+      "markupRate": 35
+    },
+    "keyContacts": [
+      {
+        "name": "Dr. Lisa Chang",
+        "role": "Chief Data Officer",
+        "email": "lisa.chang@analyticsdata.com",
+        "phone": "+1 (555) 555-6667"
+      }
+    ],
+    "performance": {
+      "onTimeDelivery": 98,
+      "clientSatisfaction": 4.9,
+      "retentionRate": 94
+    }
+  }
+]

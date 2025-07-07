@@ -1,0 +1,58 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'react-toastify/dist/ReactToastify.css';
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+}
+
+@layer components {
+  .toast-container {
+    font-size: 14px;
+  }
+  
+  .toast-container .Toastify__toast {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  .toast-container .Toastify__toast--success {
+    background-color: #00AA44;
+  }
+  
+  .toast-container .Toastify__toast--error {
+    background-color: #DC3545;
+  }
+  
+  .toast-container .Toastify__toast--warning {
+    background-color: #FF9500;
+  }
+  
+  .toast-container .Toastify__toast--info {
+    background-color: #0066CC;
+  }
+}
+
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+}
