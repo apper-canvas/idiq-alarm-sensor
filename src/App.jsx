@@ -21,21 +21,20 @@ function App() {
 return (
     <BrowserRouter>
       <Layout>
-<Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/contractors" element={<Contractors />} />
+        <Routes>
+<Route path="/" element={<Dashboard />} />
+<Route path="/contractors" element={<Contractors />} />
           <Route path="/contractors/:id" element={<ContractorDetails />} />
-          <Route path="/requisitions" element={<Requisitions />} />
+<Route path="/requisitions" element={<Requisitions />} />
           <Route path="/requisitions/:id" element={<RequisitionDetails />} />
-          <Route path="/tors" element={<TORManagement />} />
-          <Route path="/timesheets" element={<Timesheets />} />
+<Route path="/tors" element={<TORManagement />} />
+<Route path="/timesheets" element={<Timesheets />} />
           <Route path="/timesheets/workplans" element={<Timesheets />} />
           <Route path="/overtime" element={<OvertimeManagement />} />
           <Route path="/time-off" element={<TimeOffManagement />} />
-          <Route path="/reports" element={<Reports />} />
+<Route path="/reports" element={<Reports />} />
           <Route path="/agencies" element={<Agencies />} />
           <Route path="/tickets/create" element={<TicketCreate />} />
-          <Route path="/offboarding/create" element={<TicketCreate />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/agency-portal" element={<AgencyPortal />} />
         </Routes>

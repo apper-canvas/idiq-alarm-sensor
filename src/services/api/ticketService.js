@@ -9,8 +9,7 @@ const mockCategories = [
   { Id: 3, name: 'Operations', description: 'Business operations and management' },
   { Id: 4, name: 'Marketing', description: 'Marketing and communications roles' },
   { Id: 5, name: 'Legal', description: 'Legal and compliance positions' },
-  { Id: 6, name: 'HR', description: 'Human resources and talent management' },
-  { Id: 7, name: 'Offboarding', description: 'Employee resignation and termination processing' }
+  { Id: 6, name: 'HR', description: 'Human resources and talent management' }
 ];
 
 const mockBudgetSources = [
@@ -80,10 +79,8 @@ export const ticketService = {
 async create(ticketData) {
     await delay(400);
     
-    const isOffboarding = ticketData.category === 'Offboarding';
-    
-    // Process positions with auto-generated IDs (only for hiring)
-    const positions = isOffboarding ? [] : (ticketData.positions || []).map(position => ({
+    // Process positions with auto-generated IDs
+    const positions = ticketData.positions.map(position => ({
       ...position,
       Id: nextPositionId++
     }));
@@ -117,14 +114,6 @@ async create(ticketData) {
       attachedTor: ticketData.selectedTor,
       positions,
       attachments,
-      // Add offboarding specific fields
-      ...(isOffboarding && {
-        employeeId: ticketData.employeeId,
-        reason: ticketData.reason,
-        lastWorkingDay: ticketData.lastWorkingDay,
-        handoverDetails: ticketData.handoverDetails,
-        clearanceChecklist: ticketData.clearanceChecklist
-      }),
       workflow: {
         submittedBy: null,
         submittedDate: null,
