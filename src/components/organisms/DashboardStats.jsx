@@ -5,13 +5,16 @@ import { dashboardService } from '@/services/api/dashboardService';
 
 const DashboardStats = () => {
   const [stats, setStats] = useState({});
+  const [reportData, setReportData] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadStats = async () => {
       try {
         const data = await dashboardService.getStats();
+        const reports = await dashboardService.getReportData();
         setStats(data);
+        setReportData(reports);
       } catch (error) {
         console.error('Error loading dashboard stats:', error);
       } finally {

@@ -16,5 +16,11 @@ export const dashboardService = {
   async getPendingApprovals() {
     await delay(300);
     return [...dashboardData.pendingApprovals];
+  },
+
+  async getReportData() {
+    await delay(500);
+    const { default: reportData } = await import('@/services/mockData/reports.json');
+    return { ...reportData };
   }
 };
