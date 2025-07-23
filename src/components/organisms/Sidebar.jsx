@@ -60,8 +60,8 @@ const navigation = [
           <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
             <ApperIcon name="Briefcase" className="w-6 h-6 text-primary" />
           </div>
-          <div className="ml-3">
-            <h2 className="text-xl font-bold text-white">ContractFlow</h2>
+<div className="ml-3">
+            <h2 className="text-xl font-bold text-white">IDIQ RMP</h2>
             <p className="text-primary/60 text-sm">Bank Portal</p>
           </div>
         </div>
