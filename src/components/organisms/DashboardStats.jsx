@@ -25,13 +25,20 @@ const DashboardStats = () => {
     loadStats();
   }, []);
 
-  const statsData = [
+const statsData = [
     {
       title: 'Active Contractors',
       value: stats.activeContractors || 0,
       change: '+12% from last month',
       icon: 'Users',
       trend: 'up'
+    },
+    {
+      title: 'Inactive Contractors',
+      value: stats.inactiveContractors || 0,
+      change: '2 contracts ended',
+      icon: 'UserX',
+      trend: 'neutral'
     },
     {
       title: 'Pending Requisitions',
@@ -57,10 +64,10 @@ const DashboardStats = () => {
   ];
 
   return (
-    <motion.div
+<motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6"
     >
       {statsData.map((stat, index) => (
         <motion.div
