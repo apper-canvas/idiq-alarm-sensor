@@ -2,7 +2,7 @@ import assetsData from '@/services/mockData/assets.json';
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const assetService = {
+export const contractorService = {
   async getAll() {
     await delay(300);
     return [...assetsData];
