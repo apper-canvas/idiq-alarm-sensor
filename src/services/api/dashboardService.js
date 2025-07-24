@@ -6,12 +6,9 @@ export const dashboardService = {
 async getStats() {
     await delay(400);
     
-    // Import contractors data to calculate inactive count
-    const contractorsData = await import('@/services/mockData/contractors.json');
-    const contractors = contractorsData.default;
-    
-    // Count inactive contractors
-    const inactiveContractors = contractors.filter(contractor => contractor.status === 'inactive').length;
+// Note: contractors.json not available, using default value
+    // TODO: Add contractors data source when available
+    const inactiveContractors = 0;
     
     return { 
       ...dashboardData.stats,
