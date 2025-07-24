@@ -20,8 +20,8 @@ return (
         
         <div className="flex-1 flex flex-col overflow-hidden">
 <Header 
-            onMenuClick={() => setSidebarOpen(true)} 
-            title={currentPortal === 'bank' ? "IDIQ RMP" : "Agency Portal"}
+onMenuClick={() => setSidebarOpen(true)} 
+            title={currentPortal === 'bank' ? "nProcurement Demo" : "Agency Portal"}
             currentPortal={currentPortal}
             onPortalToggle={togglePortal}
             showMenuButton={currentPortal === 'bank'}

@@ -1,55 +1,55 @@
-import contractorsData from '@/services/mockData/contractors.json';
+import assetsData from '@/services/mockData/assets.json';
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const contractorService = {
+export const assetService = {
   async getAll() {
     await delay(300);
-    return [...contractorsData];
+    return [...assetsData];
   },
 
   async getById(id) {
     await delay(200);
-    const contractor = contractorsData.find(c => c.Id === parseInt(id));
-    if (!contractor) throw new Error('Contractor not found');
-    return { ...contractor };
+    const asset = assetsData.find(c => c.Id === parseInt(id));
+    if (!asset) throw new Error('Asset not found');
+    return { ...asset };
   },
 
-  async create(contractorData) {
+  async create(assetData) {
     await delay(400);
-    const newContractor = {
-      ...contractorData,
-      Id: Math.max(...contractorsData.map(c => c.Id)) + 1,
+    const newAsset = {
+      ...assetData,
+      Id: Math.max(...assetsData.map(c => c.Id)) + 1,
       createdDate: new Date().toISOString()
     };
-    contractorsData.push(newContractor);
-    return { ...newContractor };
+    assetsData.push(newAsset);
+    return { ...newAsset };
   },
 
   async update(id, updateData) {
     await delay(350);
-    const index = contractorsData.findIndex(c => c.Id === parseInt(id));
-    if (index === -1) throw new Error('Contractor not found');
+    const index = assetsData.findIndex(c => c.Id === parseInt(id));
+    if (index === -1) throw new Error('Asset not found');
     
-    contractorsData[index] = { ...contractorsData[index], ...updateData };
-    return { ...contractorsData[index] };
+    assetsData[index] = { ...assetsData[index], ...updateData };
+    return { ...assetsData[index] };
   },
 
   async delete(id) {
     await delay(250);
-    const index = contractorsData.findIndex(c => c.Id === parseInt(id));
-    if (index === -1) throw new Error('Contractor not found');
+    const index = assetsData.findIndex(c => c.Id === parseInt(id));
+    if (index === -1) throw new Error('Asset not found');
     
-    contractorsData.splice(index, 1);
+    assetsData.splice(index, 1);
 return { success: true };
   },
 
   async getExpiringContracts() {
     await delay(250);
-    const expiringContractors = contractorsData.filter(contractor => 
-      contractor.daysRemaining <= 30 && contractor.daysRemaining > 0
+    const expiringAssets = assetsData.filter(asset => 
+      asset.daysRemaining <= 30 && asset.daysRemaining > 0
     );
-    return [...expiringContractors];
+    return [...expiringAssets];
   }
 };
 

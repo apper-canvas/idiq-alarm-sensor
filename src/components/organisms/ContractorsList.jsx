@@ -1,52 +1,52 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Card, CardContent } from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import StatusBadge from '@/components/molecules/StatusBadge';
-import SearchBar from '@/components/molecules/SearchBar';
-import Loading from '@/components/ui/Loading';
-import Error from '@/components/ui/Error';
-import Empty from '@/components/ui/Empty';
-import ApperIcon from '@/components/ApperIcon';
-import { contractorService } from '@/services/api/contractorService';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { assetService } from "@/services/api/contractorService";
+import ApperIcon from "@/components/ApperIcon";
+import { Card, CardContent } from "@/components/atoms/Card";
+import Button from "@/components/atoms/Button";
+import SearchBar from "@/components/molecules/SearchBar";
+import StatusBadge from "@/components/molecules/StatusBadge";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
+import Loading from "@/components/ui/Loading";
 
-const ContractorsList = () => {
+const AssetsList = () => {
   const navigate = useNavigate();
-  const [contractors, setContractors] = useState([]);
+const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
 
-  const loadContractors = async () => {
+const loadAssets = async () => {
     try {
       setLoading(true);
       setError('');
-      const data = await contractorService.getAll();
-      setContractors(data);
+      const data = await assetService.getAll();
+      setAssets(data);
     } catch (err) {
-      setError('Failed to load contractors. Please try again.');
-      console.error('Error loading contractors:', err);
+      setError('Failed to load assets. Please try again.');
+      console.error('Error loading assets:', err);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadContractors();
+    loadAssets();
   }, []);
 
-const filteredContractors = contractors.filter(contractor => {
-    const matchesSearch = contractor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         contractor.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         contractor.department.toLowerCase().includes(searchTerm.toLowerCase());
+const filteredAssets = assets.filter(asset => {
+    const matchesSearch = asset.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         asset.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         asset.department.toLowerCase().includes(searchTerm.toLowerCase());
     
     let matchesStatus = true;
     if (selectedStatus === 'expiring') {
-      matchesStatus = contractor.daysRemaining <= 30 && contractor.daysRemaining > 0;
+      matchesStatus = asset.daysRemaining <= 30 && asset.daysRemaining > 0;
     } else if (selectedStatus !== 'all') {
-      matchesStatus = contractor.status.toLowerCase() === selectedStatus.toLowerCase();
+      matchesStatus = asset.status.toLowerCase() === selectedStatus.toLowerCase();
     }
     
     return matchesSearch && matchesStatus;
@@ -82,8 +82,8 @@ const filteredContractors = contractors.filter(contractor => {
 }
   };
 
-  const handleViewContractor = (contractorId) => {
-    navigate(`/contractors/${contractorId}`);
+const handleViewAsset = (assetId) => {
+    navigate(`/assets/${assetId}`);
   };
 
   const handleEditContractor = (contractorId) => {
@@ -94,24 +94,24 @@ const filteredContractors = contractors.filter(contractor => {
     return <Loading variant="table" />;
   }
 
-  if (error) {
+if (error) {
     return (
       <Error
-        title="Failed to load contractors"
+        title="Failed to load assets"
         message={error}
-        onRetry={loadContractors}
+        onRetry={loadAssets}
       />
     );
   }
 
-  if (contractors.length === 0) {
+if (assets.length === 0) {
     return (
       <Empty
-        title="No contractors found"
-        message="Get started by adding your first contractor to the system."
+        title="No assets found"
+        message="Get started by adding your first asset to the system."
         icon="Users"
-        actionLabel="Add Contractor"
-        onAction={() => console.log('Add contractor clicked')}
+        actionLabel="Add Asset"
+        onAction={() => console.log('Add asset clicked')}
       />
     );
   }
@@ -125,7 +125,7 @@ const filteredContractors = contractors.filter(contractor => {
       <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
         <SearchBar
           onSearch={setSearchTerm}
-          placeholder="Search contractors..."
+placeholder="Search assets..."
           className="w-full md:w-96"
         />
         
@@ -143,9 +143,9 @@ const filteredContractors = contractors.filter(contractor => {
             <option value="expiring">Expiring Soon</option>
           </select>
           
-          <Button variant="primary" className="flex items-center gap-2">
+<Button variant="primary" className="flex items-center gap-2">
             <ApperIcon name="Plus" className="w-4 h-4" />
-            Add Contractor
+            Add Asset
           </Button>
         </div>
       </div>
@@ -156,7 +156,7 @@ const filteredContractors = contractors.filter(contractor => {
             <table className="w-full">
               <thead className="bg-surface border-b border-gray-200">
                 <tr>
-                  <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Contractor</th>
+<th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Asset</th>
                   <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Department</th>
                   <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Manager</th>
                   <th className="text-left py-4 px-6 text-sm font-medium text-gray-900">Contract Period</th>
@@ -165,9 +165,9 @@ const filteredContractors = contractors.filter(contractor => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {filteredContractors.map((contractor) => (
+{filteredAssets.map((asset) => (
                   <motion.tr
-                    key={contractor.Id}
+                    key={asset.Id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     whileHover={{ backgroundColor: '#f9fafb' }}
@@ -179,23 +179,23 @@ const filteredContractors = contractors.filter(contractor => {
                           <ApperIcon name="User" className="w-5 h-5 text-secondary" />
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm font-medium text-gray-900">{contractor.name}</p>
-                          <p className="text-sm text-gray-500">{contractor.email}</p>
+                          <p className="text-sm font-medium text-gray-900">{asset.name}</p>
+                          <p className="text-sm text-gray-500">{asset.email}</p>
                         </div>
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <p className="text-sm text-gray-900">{contractor.department}</p>
+                      <p className="text-sm text-gray-900">{asset.department}</p>
                     </td>
                     <td className="py-4 px-6">
-                      <p className="text-sm text-gray-900">{contractor.manager}</p>
+                      <p className="text-sm text-gray-900">{asset.manager}</p>
                     </td>
 <td className="py-4 px-6">
                       <div className="text-sm text-gray-900">
-                        <p>{formatDate(contractor.startDate)} - {formatDate(contractor.endDate)}</p>
+                        <p>{formatDate(asset.startDate)} - {formatDate(asset.endDate)}</p>
                         <div className="flex items-center gap-2 mt-1">
                           {(() => {
-                            const expiryStatus = getExpiryStatus(contractor.daysRemaining);
+                            const expiryStatus = getExpiryStatus(asset.daysRemaining);
                             const alertColor = getExpiryAlertColor(expiryStatus);
                             const alertIcon = getExpiryIcon(expiryStatus);
                             
@@ -203,9 +203,9 @@ const filteredContractors = contractors.filter(contractor => {
                               <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${alertColor}`}>
                                 {alertIcon && <ApperIcon name={alertIcon} className="w-3 h-3" />}
                                 <span>
-                                  {contractor.daysRemaining <= 0 
+                                  {asset.daysRemaining <= 0 
                                     ? 'Expired' 
-                                    : `${contractor.daysRemaining} days remaining`}
+                                    : `${asset.daysRemaining} days remaining`}
                                 </span>
                               </div>
                             );
@@ -214,21 +214,21 @@ const filteredContractors = contractors.filter(contractor => {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <StatusBadge status={contractor.status} type="contractor" />
+                      <StatusBadge status={asset.status} type="asset" />
                     </td>
 <td className="py-4 px-6">
                       <div className="flex items-center gap-2">
                         <Button 
                           variant="ghost" 
                           size="sm"
-                          onClick={() => handleViewContractor(contractor.Id)}
+                          onClick={() => handleViewAsset(asset.Id)}
                         >
                           <ApperIcon name="Eye" className="w-4 h-4" />
                         </Button>
-                        <Button 
+<Button 
                           variant="ghost" 
                           size="sm"
-                          onClick={() => handleEditContractor(contractor.Id)}
+                          onClick={() => handleEditContractor(asset.Id)}
                         >
                           <ApperIcon name="Edit" className="w-4 h-4" />
                         </Button>
@@ -245,9 +245,9 @@ const filteredContractors = contractors.filter(contractor => {
         </CardContent>
       </Card>
 
-      {filteredContractors.length === 0 && contractors.length > 0 && (
+{filteredAssets.length === 0 && assets.length > 0 && (
         <Empty
-          title="No contractors match your search"
+          title="No assets match your search"
           message="Try adjusting your search criteria or status filter."
           icon="Search"
           showAction={false}
@@ -256,5 +256,4 @@ const filteredContractors = contractors.filter(contractor => {
     </motion.div>
   );
 };
-
-export default ContractorsList;
+export default AssetsList;

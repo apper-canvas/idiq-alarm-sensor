@@ -9,7 +9,7 @@ import Layout from "@/components/Layout";
 import Timesheets from "@/components/pages/Timesheets";
 import Agencies from "@/components/pages/Agencies";
 import Dashboard from "@/components/pages/Dashboard";
-import Contractors from "@/components/pages/Contractors";
+import Assets from "@/components/pages/Contractors";
 import Requisitions from "@/components/pages/Requisitions";
 import RequisitionDetails from "@/components/pages/RequisitionDetails";
 import Reports from "@/components/pages/Reports";
@@ -23,8 +23,8 @@ return (
       <Layout>
         <Routes>
 <Route path="/" element={<Dashboard />} />
-<Route path="/contractors" element={<Contractors />} />
-          <Route path="/contractors/:id" element={<ContractorDetails />} />
+<Route path="/assets" element={<Assets />} />
+          <Route path="/assets/:id" element={<ContractorDetails />} />
 <Route path="/requisitions" element={<Requisitions />} />
           <Route path="/requisitions/:id" element={<RequisitionDetails />} />
 <Route path="/tors" element={<TORManagement />} />

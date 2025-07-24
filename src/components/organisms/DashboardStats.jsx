@@ -27,14 +27,14 @@ const DashboardStats = () => {
 
 const statsData = [
     {
-      title: 'Active Contractors',
+title: 'Active Assets',
       value: stats.activeContractors || 0,
       change: '+12% from last month',
       icon: 'Users',
       trend: 'up'
     },
     {
-      title: 'Inactive Contractors',
+      title: 'Inactive Assets',
       value: stats.inactiveContractors || 0,
       change: '2 contracts ended',
       icon: 'UserX',
