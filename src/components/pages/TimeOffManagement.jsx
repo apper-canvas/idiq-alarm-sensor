@@ -18,13 +18,14 @@ const TimeOffManagement = () => {
   const [error, setError] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [editingRequest, setEditingRequest] = useState(null);
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     employeeName: '',
     startDate: '',
     endDate: '',
     reason: '',
     hours: '',
     type: 'Pre-facto',
+    holiday: false,
     notifications: {
       userUnit: true,
       agency: true
@@ -68,7 +69,7 @@ const TimeOffManagement = () => {
   };
 
   const handleEdit = (request) => {
-    setEditingRequest(request);
+setEditingRequest(request);
     setFormData({
       employeeName: request.employeeName,
       startDate: request.startDate,
@@ -76,6 +77,7 @@ const TimeOffManagement = () => {
       reason: request.reason,
       hours: request.hours,
       type: request.type,
+      holiday: request.holiday || false,
       notifications: request.notifications
     });
     setShowForm(true);
@@ -93,7 +95,7 @@ const TimeOffManagement = () => {
     }
   };
 
-  const resetForm = () => {
+const resetForm = () => {
     setFormData({
       employeeName: '',
       startDate: '',
@@ -101,6 +103,7 @@ const TimeOffManagement = () => {
       reason: '',
       hours: '',
       type: 'Pre-facto',
+      holiday: false,
       notifications: {
         userUnit: true,
         agency: true
@@ -225,10 +228,23 @@ const TimeOffManagement = () => {
 
                 <FormField
                   label="Reason"
-                  value={formData.reason}
+value={formData.reason}
                   onChange={(e) => handleInputChange('reason', e.target.value)}
                   required
                 />
+
+                <div className="space-y-3">
+                  <Label>Holiday</Label>
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={formData.holiday}
+                      onChange={(e) => handleInputChange('holiday', e.target.checked)}
+                      className="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span className="text-sm text-gray-700">Holiday</span>
+                  </label>
+                </div>
 
                 <div className="space-y-3">
                   <Label>FYI Notifications</Label>
