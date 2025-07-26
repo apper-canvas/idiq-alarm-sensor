@@ -17,6 +17,7 @@ import Settings from "@/components/pages/Settings";
 import TicketCreate from "@/components/pages/TicketCreate";
 import AgencyPortal from "@/components/pages/AgencyPortal";
 import ContractorDetails from "@/components/pages/ContractorDetails";
+import ScheduleInterviews from "@/components/pages/ScheduleInterviews";
 function App() {
 return (
     <BrowserRouter>
@@ -27,6 +28,7 @@ return (
           <Route path="/assets/:id" element={<ContractorDetails />} />
 <Route path="/requisitions" element={<Requisitions />} />
           <Route path="/requisitions/:id" element={<RequisitionDetails />} />
+          <Route path="/requisitions/:id/interviews" element={<ScheduleInterviews />} />
 <Route path="/tors" element={<TORManagement />} />
 <Route path="/timesheets" element={<Timesheets />} />
           <Route path="/timesheets/workplans" element={<Timesheets />} />

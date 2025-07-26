@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { toast } from 'react-toastify';
-import { Card, CardContent, CardHeader } from '@/components/atoms/Card';
-import Button from '@/components/atoms/Button';
-import Select from '@/components/atoms/Select';
-import Input from '@/components/atoms/Input';
-import Badge from '@/components/atoms/Badge';
-import ApperIcon from '@/components/ApperIcon';
-import { requisitionService } from '@/services/api/requisitionService';
-import { cvSubmissionService } from '@/services/api/cvSubmissionService';
-import { agencyService } from '@/services/api/agencyService';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
+import { agencyService } from "@/services/api/agencyService";
+import { requisitionService } from "@/services/api/requisitionService";
+import { cvSubmissionService } from "@/services/api/cvSubmissionService";
+import ApperIcon from "@/components/ApperIcon";
+import Requisitions from "@/components/pages/Requisitions";
+import Agencies from "@/components/pages/Agencies";
+import Badge from "@/components/atoms/Badge";
+import Input from "@/components/atoms/Input";
+import Button from "@/components/atoms/Button";
+import Select from "@/components/atoms/Select";
+import { Card, CardContent, CardHeader } from "@/components/atoms/Card";
 
 const RequisitionDetails = () => {
   const { id } = useParams();
@@ -748,12 +750,16 @@ const RequisitionDetails = () => {
               </h2>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
+<div className="space-y-3">
                 <Button className="w-full justify-start" variant="outline">
                   <ApperIcon name="Mail" size={16} />
                   Send to More Agencies
                 </Button>
-                <Button className="w-full justify-start" variant="outline">
+                <Button 
+                  className="w-full justify-start" 
+                  variant="outline"
+                  onClick={() => navigate(`/requisitions/${id}/interviews`)}
+                >
                   <ApperIcon name="Calendar" size={16} />
                   Schedule Interviews
                 </Button>
